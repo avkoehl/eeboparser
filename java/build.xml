@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="compile" name="lucene-demo">
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="obj-dir" location="bin" />
+    <property name="lib-dir" location="lib" />
+    <property name="src-dir" location="src" />
+
+    <path id="classpath">
+	<fileset dir="${lib-dir}" includes="**/*.jar"/>
+	<fileset dir="/usr/share/java" includes="**/*.jar"/>
+	<pathelement location="${obj-dir}"/>
+    </path>
+
+    <target name="init">
+	<mkdir dir="${obj-dir}" />
+	<mkdir dir="${lib-dir}" />
+    </target>
+
+    <target name="clean">
+	<delete dir="${obj-dir}" />
+	<delete dir="index" />
+    </target>
+
+    <target name="compile" depends="init">
+	<echo message="${ant.project.name}: ${ant.file}"/>
+	<javac debug="true" debuglevel="${debuglevel}" includeantruntime="false" srcdir="${src-dir}" destdir="${obj-dir}" includes="**/*.java">
+	    <classpath refid="classpath"/>
+	    <compilerarg value="-Xlint:deprecation" />
+	</javac>
+    </target>    
+
+    <target name="adorn" depends="compile">
+	<java classname="AdornFilesParallel" failonerror="true" fork="yes">
+	    <classpath refid="classpath"/>
+	    <arg value="../../data/extracted_text/"/>
+	    <arg value="../../data/adorned_text"/>
+	    <arg value="./morphadorner-data/"/>
+	</java>
+    </target>
+</project>
