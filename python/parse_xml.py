@@ -1,8 +1,5 @@
 import re
 import xml.etree.ElementTree as ET
-from pathlib import Path
-
-from joblib import Parallel, delayed
 
 def inter_word_tags_preprocess(raw):
     """ remove tags occuring within a word using re """
@@ -76,7 +73,10 @@ def get_meta(root):
             .find("TITLESTMT")
             .find("TITLE").text)
 
-    bib = root.find("HEADER").find("FILEDESC").find("SOURCEDESC").find("BIBLFULL")
+    bib = (root.find("HEADER").
+            find("FILEDESC").
+            find("SOURCEDESC").
+            find("BIBLFULL"))
 
     publisher = None
     try:
