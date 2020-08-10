@@ -13,9 +13,8 @@ def handle_gaps(root):
     return(root)
 
 def get_content(eebo):
-    content = ""
-    for t in eebo.iter("TEXT"):
-        content += " ".join(t.itertext())
+    textslist = [" ".join(t.itertext()) for t in eebo.iter("TEXT")]
+    content = " ".join(textslist)
 
     # since they got needlessely delimited in " ".join(t.itertext()
     content = content.replace(" * ", "*")
