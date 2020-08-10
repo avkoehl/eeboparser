@@ -1,7 +1,8 @@
 import re
 import xml.etree.ElementTree as ET
-from joblib import Parallel, delayed
 from pathlib import Path
+
+from joblib import Parallel, delayed
 
 def inter_word_tags_preprocess(raw):
     """ remove tags occuring within a word using re """
@@ -143,17 +144,3 @@ def parse_xml(fname):
         root = handle_gaps(root)
         content = get_content(root.find("EEBO"))
         return(meta, content)
-
-
-Path('../data/extracted_text/').mkdir(parents=True, exist_ok=True)
-p = Path("../data/")
-files = list(p.glob('**/*.xml'))
-
-#results = [parse_xml(fname) for fname in files[0:2000]]
-
-results = Parallel(n_jobs=4)(delayed(parse_xml)(f) for f in files[0:2000])
-#for i in range(0, len(results)):
-#    with open("../data/extracted_text/" + files[i].stem + ".txt", 
-#            encoding="utf-8",
-#            mode="w") as ofile:
-#        ofile.write(results[i][1])
