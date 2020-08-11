@@ -9,7 +9,7 @@ run adorn.sh
 # Setup
 
 need java8+ installed
-need python requirements from requirements.txt file (pip install --user -r requirements.txt)
+need python3 requirements from requirements.txt file (pip install --user -r requirements.txt)
 need mongodb service running
 
 # Corpus.py
