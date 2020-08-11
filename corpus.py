@@ -1,22 +1,31 @@
-import time
 from pathlib import Path
 
 from joblib import Parallel, delayed
 
 import python.parse_xml as px
+import python.mongo as m
 
-Path('../data/extracted_text/').mkdir(parents=True, exist_ok=True)
-p = Path("../data/")
-files = list(p.glob('**/*.xml'))
+print("connecting to mongo database")
+mydb = m.open_db_connection("mongo-credentials.json")
 
-
-print("running on all files 4 cores")
-start = time.time()
+print("parsing xml")
+files = list(Path("../data/").glob('**/*.xml'))[0:100]
 results = Parallel(n_jobs=4)(delayed(px.parse_xml)(f) for f in files)
-for i in range(0, len(results)):
-    with open("../data/extracted_text/" + files[i].stem + ".txt", 
-            encoding="utf-8",
-            mode="w") as ofile:
-        ofile.write(results[i][1])
 
-print("elapsed time: ", time.time() - start, " seconds")
+print("inserting into database")
+metadata_list = []
+content_list = []
+truncated_content_list = []
+for i,result in enumerate(results):
+    result[0]["_id"] = i
+    content = {"_id": i,
+               "raw": result[1]}
+    truncated = {"_id": i,
+                 "raw": result[1][0:500]}
+    metadata_list.append(result[0])
+    content_list.append(content)
+    truncated_content_list.append(truncated)
+
+
+m.insert_metadata(mydb, metadata_list)
+m.insert_content(mydb, content_list, truncated_content_list)
