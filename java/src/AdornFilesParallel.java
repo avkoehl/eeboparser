@@ -1,3 +1,5 @@
+package morph;
+
 import java.nio.file.*;
 import java.io.*;
 import java.util.*;
@@ -5,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 import edu.northwestern.at.morphadorner.MorphAdorner;
 
+import morph.MongoConnection;
 
 public class AdornFilesParallel 
 {
