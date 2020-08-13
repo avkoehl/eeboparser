@@ -130,3 +130,48 @@
 2020-08-12 23:09:04,250 INFO  - Loaded 162,248 standard spellings in 1 second.
 2020-08-12 23:09:05,081 INFO  - Loaded 358,726 alternative spellings in 1 second.
 2020-08-12 23:09:05,082 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:24:37,156 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:24:38,167 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 23:24:38,873 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:24:38,967 INFO  - 
+2020-08-12 23:24:40,368 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:24:41,316 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 23:24:41,419 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:24:42,926 INFO  - Loaded 358,726 alternative spellings in 2 seconds.
+2020-08-12 23:24:42,928 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:24:58,076 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:24:59,077 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 23:24:59,827 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:24:59,918 INFO  - 
+2020-08-12 23:25:01,169 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:25:02,275 INFO  - Loaded 91,994 names into name standardizer in 2 seconds.
+2020-08-12 23:25:02,442 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:25:03,368 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:25:03,369 INFO  - Loaded 352 more alternative spellings in 15 word classes in < 1 second.
+2020-08-12 23:28:36,786 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:28:37,935 INFO  - Loaded word lexicon with 266,560 entries in 2 seconds.
+2020-08-12 23:28:38,815 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:28:38,915 INFO  - 
+2020-08-12 23:28:40,196 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:28:41,220 INFO  - Loaded 91,994 names into name standardizer in 2 seconds.
+2020-08-12 23:28:41,323 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:28:42,129 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:28:42,131 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:49:35,730 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:49:36,757 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 23:49:37,633 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:49:37,735 INFO  - 
+2020-08-12 23:49:38,816 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:49:39,782 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 23:49:39,871 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:49:40,612 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:49:40,615 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:56:35,492 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:56:36,398 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 23:56:37,019 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:56:37,105 INFO  - 
+2020-08-12 23:56:38,449 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:56:39,337 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 23:56:39,421 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:56:40,098 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:56:40,100 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.

@@ -25,7 +25,7 @@ import edu.northwestern.at.morphadorner.corpuslinguistics.namestandardizer.*;
 import edu.northwestern.at.morphadorner.corpuslinguistics.namerecognizer.*;
 
 
-public class Test
+public class AdornString
 {
     String latinWordsFileName = "./morphadorner-data/resources/latinwords.txt";
     String lemmaSeparator="-";
@@ -51,6 +51,26 @@ public class Test
     TransitionMatrix mat = null;
     SpellingMapper map = null;
     NameStandardizer name_std = null;
+    MorphAdornerSettings settings = null;
+    MorphAdornerLogger logger = null;
+
+    public AdornString() {
+	MorphAdornerSettings settings = new MorphAdornerSettings();
+	MorphAdornerLogger logger = null;
+	try {
+	    logger = new MorphAdornerLogger(
+		    "./morphadorner-data/morphadornerlog.config",
+		    "./morphadorner-data/log/",
+		    settings);
+	}
+	catch (Exception e) {
+	    e.printStackTrace();
+	}
+	settings = this.load_settings(settings, logger);
+	this.initializer(settings, logger);
+	this.settings = settings;
+	this.logger = logger;
+    }
 
     public MorphAdornerSettings load_settings(MorphAdornerSettings settings, 
 	    MorphAdornerLogger logger) {
@@ -177,10 +197,10 @@ public class Test
     public String standardize_spelling(String word, String pos) {
 	String std = "";
 	if (! ( this.tags.isProperNounTag(pos) || this.tags.isNounTag(pos) ||
-		CharUtils.hasInternalCaps(word) || this.tags.isForeignWordTag(pos) ||
-		this.tags.isNumberTag(pos) )) {
+		    CharUtils.hasInternalCaps(word) || this.tags.isForeignWordTag(pos) ||
+		    this.tags.isNumberTag(pos) )) {
 	    std = this.speller.standardizeSpelling(word,tags.getMajorWordClass(pos));
-		}
+		    }
 	return(std);
     }
 
@@ -220,28 +240,13 @@ public class Test
 	return (lemma);
     }
 
-    public static void main( String[] args)
-    {
-	String raw = "This is a couple of sentences. Please adorn them";
-	MorphAdornerSettings settings = new MorphAdornerSettings();
-	MorphAdornerLogger logger = null;
-	try {
-	    logger = new MorphAdornerLogger(
-		    "./morphadorner-data/morphadornerlog.config",
-		    "./morphadorner-data/log/",
-		    settings);
-	}
-	catch (Exception e) {
-	    e.printStackTrace();
-	}
+    public void adorn_string(String raw) {
+	// class needs to be initialized!
+	List<List<String>> sentences = this.splitter.extractSentences(raw, this.tokenizer);
+	int[] sentence_and_word_count = MorphAdornerUtils.getWordAndSentenceCounts( sentences );
+	int wc = sentence_and_word_count[1];
 
-	Test test = new Test();
-	settings = test.load_settings(settings, logger);
-	test.initializer(settings, logger);
-
-	List<List<String>> sentences = test.splitter.extractSentences(raw, test.tokenizer);
-
-	List<List<AdornedWord>> result = test.tagger.tagSentences(sentences);
+	List<List<AdornedWord>> result = this.tagger.tagSentences(sentences);
 
 	String lemma = "";
 	String std = "";
@@ -249,9 +254,15 @@ public class Test
 	String pos = "";
 	AdornedWord adorned_word;
 
+	String[] lemmas = new String[wc];
+	String[] stds = new String[wc];
+	String[] originals = new String[wc];
+	String[] poss = new String[wc];
+
 	Iterator<List<AdornedWord>> iterator = result.iterator();
 
 	// iterate through tagged sentences to get lemma,std,pos, original
+	int count = 0;
 	while (iterator.hasNext()) {
 	    List<AdornedWord> sentence = iterator.next();
 	    for (int i = 0; i < sentence.size(); i++)
@@ -259,17 +270,27 @@ public class Test
 		adorned_word = sentence.get(i);
 		original = adorned_word.getToken();
 		pos = adorned_word.getPartsOfSpeech();
-		std = test.speller.standardizeSpelling(
+		std = this.speller.standardizeSpelling(
 			adorned_word.getSpelling() ,
-			test.tags.getMajorWordClass(pos));
+			this.tags.getMajorWordClass(pos));
 
-		std = test.standardize_spelling(std, pos);
-		std = test.map.mapSpelling(std);
-		lemma = test.lemmatize(adorned_word.getSpelling(), pos);
+		std = this.standardize_spelling(std, pos);
+		std = this.map.mapSpelling(std);
+		lemma = this.lemmatize(adorned_word.getSpelling(), pos);
+		lemmas[i] = lemma;
+		stds[i] = std;
+		originals[i] = original;
+		poss[i] = pos;
 		System.out.println(original + " " + pos + " " + lemma + " " + std);
-
 	    }//for each word
 	}//while sentences
     }
-}
 
+    public static void main( String[] args)
+    {
+	String raw = "This is a couple of sentences. Please adorn them";
+	AdornString adorner = new AdornString();
+	adorner.adorn_string(raw);
+
+    }
+}
