@@ -1,0 +1,51 @@
+2020-08-12 16:07:36,968 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:09:51,343 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:10:10,662 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:12:08,866 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:13:57,801 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:17:59,032 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:22:19,681 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:22:46,267 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 16:25:06,785 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 17:49:57,614 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 17:55:13,845 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 18:12:14,780 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 18:14:10,212 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 18:21:02,361 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 21:52:04,816 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 21:52:44,380 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 21:52:45,378 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 21:52:46,144 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 21:52:46,252 INFO  - 
+2020-08-12 21:52:47,212 INFO  - Loaded transition matrix in 1 second.
+2020-08-12 21:52:48,106 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 21:52:48,190 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 21:52:48,885 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 21:52:48,888 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 21:54:53,776 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 21:54:54,842 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 21:54:55,543 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 21:54:55,627 INFO  - 
+2020-08-12 21:54:56,731 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 21:54:57,616 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 21:54:57,689 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 21:54:58,383 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 21:54:58,383 INFO  - Loaded 352 more alternative spellings in 15 word classes in < 1 second.
+2020-08-12 22:00:29,542 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 22:00:30,473 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 22:00:31,234 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 22:00:31,339 INFO  - 
+2020-08-12 22:00:32,328 INFO  - Loaded transition matrix in 1 second.
+2020-08-12 22:00:33,261 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 22:00:33,340 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 22:00:34,090 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 22:00:34,091 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 22:03:31,986 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 22:03:33,015 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 22:03:33,728 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 22:03:33,811 INFO  - 
+2020-08-12 22:03:34,761 INFO  - Loaded transition matrix in 1 second.
+2020-08-12 22:03:35,640 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 22:03:35,714 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 22:03:36,492 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 22:03:36,493 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.

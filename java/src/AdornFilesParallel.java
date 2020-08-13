@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import edu.northwestern.at.morphadorner.MorphAdorner;
 
 import morph.MongoConnection;
+import com.mongodb.client.MongoDatabase; 
 
 public class AdornFilesParallel 
 {
@@ -40,7 +41,10 @@ public class AdornFilesParallel
 	String odir = args[1];
 	String dataroot = args[2];
 
+	MongoConnection con = new MongoConnection();
+	MongoDatabase db = con.connect_to_db("../../mongo-credentials.json");
 
+	/*
 	try { 
 	    Stream<Path> files = Files.list(Paths.get(idir));
 	    files.forEach(f -> 
@@ -52,5 +56,6 @@ public class AdornFilesParallel
 	{
 	    e.printStackTrace();
 	}
+	*/
     }// main
 }
