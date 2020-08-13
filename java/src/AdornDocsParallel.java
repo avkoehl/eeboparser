@@ -10,7 +10,6 @@ import edu.northwestern.at.morphadorner.MorphAdorner;
 import com.mongodb.client.MongoDatabase; 
 
 import morph.MongoConnection;
-import morph.Doc;
 import morph.AdornString;
 
 public class AdornDocsParallel 
