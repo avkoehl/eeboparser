@@ -285,12 +285,4 @@ public class AdornString
 	    }//for each word
 	}//while sentences
     }
-
-    public static void main( String[] args)
-    {
-	String raw = "This is a couple of sentences. Please adorn them";
-	AdornString adorner = new AdornString();
-	adorner.adorn_string(raw);
-
-    }
 }
