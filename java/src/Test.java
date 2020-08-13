@@ -71,7 +71,7 @@ public class Test
 
 	settings.initializeSettings(logger);
 	try {
-	settings.getSettings(setting_args);
+	    settings.getSettings(setting_args);
 	}
 	catch (Exception e) {
 	    e.printStackTrace();
@@ -80,7 +80,7 @@ public class Test
     }
 
     public void initializer (MorphAdornerSettings settings, 
-			       MorphAdornerLogger logger) {
+	    MorphAdornerLogger logger) {
 
 	// adapted from MorphAdorner.initializeAdornment()
 
@@ -99,9 +99,9 @@ public class Test
 	posttokenizer = PostTokenizerFactory.newPostTokenizer(settings.properties);
 
 	try {
-	lexicon = MorphAdornerUtils.loadWordLexicon(settings, logger);
-	suffix_lexicon = MorphAdornerUtils.loadSuffixLexicon(settings, logger);
-	map = MorphAdornerUtils.createSpellingMapper(settings.properties);
+	    lexicon = MorphAdornerUtils.loadWordLexicon(settings, logger);
+	    suffix_lexicon = MorphAdornerUtils.loadSuffixLexicon(settings, logger);
+	    map = MorphAdornerUtils.createSpellingMapper(settings.properties);
 	}
 	catch (Exception e) {
 	    e.printStackTrace();
@@ -131,11 +131,11 @@ public class Test
 	guesser.setSuffixLexicon(suffix_lexicon);
 	guesser.addAuxiliaryWordList
 	    (
-		new TaggedStringsSet
-		(
-		    names.getPlaceNames().keySet(),
-		    tags.getSingularProperNounTag()
-		)
+	     new TaggedStringsSet
+	     (
+	      names.getPlaceNames().keySet(),
+	      tags.getSingularProperNounTag()
+	     )
 	    );
 	guesser.addAuxiliaryWordList(
 		new TaggedStringsSet(
@@ -160,10 +160,10 @@ public class Test
 	tagger.setLexicon(lexicon);
 
 	try {
-	MorphAdornerUtils.loadTaggerRules(tagger, settings, logger);
-	mat = MorphAdornerUtils.loadTransitionMatrix(tagger, settings, logger);
-	name_std = MorphAdornerUtils.createNameStandardizer(lexicon, settings, logger);
-	speller = MorphAdornerUtils.createSpellingStandardizer(lexicon, names, settings, logger);
+	    MorphAdornerUtils.loadTaggerRules(tagger, settings, logger);
+	    mat = MorphAdornerUtils.loadTransitionMatrix(tagger, settings, logger);
+	    name_std = MorphAdornerUtils.createNameStandardizer(lexicon, settings, logger);
+	    speller = MorphAdornerUtils.createSpellingStandardizer(lexicon, names, settings, logger);
 	}
 	catch (Exception e) {
 	    e.printStackTrace();
@@ -173,8 +173,23 @@ public class Test
 	lemmatizer.setDictionary(speller.getStandardSpellings());
     }
 
-
-
+    public String standardize_spelling(String word, String pos, SpellingStandardizer speller) {
+	String std = "";
+	if ( this.tags.isProperNounTag(pos) || this.tags.isNounTag(pos) ||
+		CharUtils.hasInternalCaps(word) || this.tags.isForeignWordTag(pos) ||
+		this.tags.isNumberTag(pos) ) {
+		}
+	else
+	{
+	    std    =
+		speller.standardizeSpelling
+		(
+		 word,
+		 tags.getMajorWordClass(pos)
+		);
+	}
+	return(std);
+    }
 
     public static void main( String[] args)
     {
@@ -199,7 +214,33 @@ public class Test
 
 	List<List<AdornedWord>> result = test.tagger.tagSentences(sentences);
 
+	String lemma = "";
+	String std = "";
+	String original = "";
+	String pos = "";
+	AdornedWord adorned_word;
+
+	Iterator<List<AdornedWord>> iterator = result.iterator();
+
 	// iterate through tagged sentences to get lemma,std,pos, original
+	while (iterator.hasNext()) {
+	    List<AdornedWord> sentence = iterator.next();
+	    for (int i = 0; i < sentence.size(); i++)
+	    {
+		adorned_word = sentence.get(i);
+		original = adorned_word.getToken();
+		pos = adorned_word.getPartsOfSpeech();
+		std = test.speller.standardizeSpelling(
+			adorned_word.getSpelling() ,
+			test.tags.getMajorWordClass(pos));
+
+
+		std = test.standardize_spelling(std, pos, test.speller);
+		std = test.map.mapSpelling(std);
+		System.out.println(original + " " + pos + " " + " " + std);
+
+	    }//for each word
+	}//while sentences
     }
 }
 
