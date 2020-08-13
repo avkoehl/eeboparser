@@ -28,6 +28,7 @@ import edu.northwestern.at.morphadorner.corpuslinguistics.namerecognizer.*;
 public class Test
 {
     String latinWordsFileName = "./morphadorner-data/resources/latinwords.txt";
+    String lemmaSeparator="-";
     Names names = new Names();
     PartOfSpeechTagger tagger = null;
     SpellingStandardizer speller = null;
@@ -173,22 +174,50 @@ public class Test
 	lemmatizer.setDictionary(speller.getStandardSpellings());
     }
 
-    public String standardize_spelling(String word, String pos, SpellingStandardizer speller) {
+    public String standardize_spelling(String word, String pos) {
 	String std = "";
-	if ( this.tags.isProperNounTag(pos) || this.tags.isNounTag(pos) ||
+	if (! ( this.tags.isProperNounTag(pos) || this.tags.isNounTag(pos) ||
 		CharUtils.hasInternalCaps(word) || this.tags.isForeignWordTag(pos) ||
-		this.tags.isNumberTag(pos) ) {
+		this.tags.isNumberTag(pos) )) {
+	    std = this.speller.standardizeSpelling(word,tags.getMajorWordClass(pos));
 		}
-	else
-	{
-	    std    =
-		speller.standardizeSpelling
-		(
-		 word,
-		 tags.getMajorWordClass(pos)
-		);
-	}
 	return(std);
+    }
+
+    public String lemmatize(String word, String pos) {
+	String lemma = word;
+	String lemmaClass = this.tags.getLemmaWordClass(pos);
+	if (!(this.lemmatizer.cantLemmatize(word) || lemmaClass.equals("none"))) {
+	    lemma = this.lemmatizer.lemmatize(word, "compound");
+	    if (lemma.equals(word)) {
+		List wordList = this.tokenizer.extractWords(word);
+		if (!this.tags.isCompoundTag(pos) || wordList.size() == 1) {
+		    if (lemmaClass.length() == 0) {
+			lemma = this.lemmatizer.lemmatize(word);
+		    }
+		    else {
+			lemma = this.lemmatizer.lemmatize(word, lemmaClass);
+		    }
+		}
+		else {
+		    lemma = "";
+		    String lemmaPiece = "";
+		    String[] posTags = this.tags.splitTag(pos);
+		    if (posTags.length == wordList.size()){
+			for (int i = 0; i < wordList.size(); i++) {
+			    String wordPiece = (String)wordList.get(i);
+			    if (i > 0) {
+				lemma = lemma + lemmaSeparator;
+			    }
+			    lemmaClass = this.tags.getLemmaWordClass(posTags[i]);
+			    lemmaPiece = this.lemmatizer.lemmatize(wordPiece, lemmaClass);
+			    lemma = lemma + lemmaPiece;
+			}
+		    }
+		}
+	    }
+	}
+	return (lemma);
     }
 
     public static void main( String[] args)
@@ -234,10 +263,10 @@ public class Test
 			adorned_word.getSpelling() ,
 			test.tags.getMajorWordClass(pos));
 
-
-		std = test.standardize_spelling(std, pos, test.speller);
+		std = test.standardize_spelling(std, pos);
 		std = test.map.mapSpelling(std);
-		System.out.println(original + " " + pos + " " + " " + std);
+		lemma = test.lemmatize(adorned_word.getSpelling(), pos);
+		System.out.println(original + " " + pos + " " + lemma + " " + std);
 
 	    }//for each word
 	}//while sentences

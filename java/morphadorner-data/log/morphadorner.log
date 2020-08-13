@@ -103,3 +103,30 @@
 2020-08-12 22:47:50,569 INFO  - Loaded 162,248 standard spellings in 1 second.
 2020-08-12 22:47:51,625 INFO  - Loaded 358,726 alternative spellings in 1 second.
 2020-08-12 22:47:51,626 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 22:56:55,029 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 22:56:56,434 INFO  - Loaded word lexicon with 266,560 entries in 2 seconds.
+2020-08-12 22:56:57,334 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 22:56:57,482 INFO  - 
+2020-08-12 22:56:58,905 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 22:56:59,957 INFO  - Loaded 91,994 names into name standardizer in 2 seconds.
+2020-08-12 22:57:00,078 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 22:57:00,904 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 22:57:00,906 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:07:50,313 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:07:51,323 INFO  - Loaded word lexicon with 266,560 entries in 1 second.
+2020-08-12 23:07:52,114 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:07:52,213 INFO  - 
+2020-08-12 23:07:53,195 INFO  - Loaded transition matrix in 1 second.
+2020-08-12 23:07:54,232 INFO  - Loaded 91,994 names into name standardizer in 2 seconds.
+2020-08-12 23:07:54,313 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:07:55,023 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:07:55,024 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
+2020-08-12 23:08:59,763 ERROR - You must specify a name for tags that will be added with xml.word_tag_name in configuration file.
+2020-08-12 23:09:00,968 INFO  - Loaded word lexicon with 266,560 entries in 2 seconds.
+2020-08-12 23:09:01,864 INFO  - Loaded suffix lexicon with 317,192 entries in 1 second.
+2020-08-12 23:09:01,974 INFO  - 
+2020-08-12 23:09:03,239 INFO  - Loaded transition matrix in 2 seconds.
+2020-08-12 23:09:04,154 INFO  - Loaded 91,994 names into name standardizer in 1 second.
+2020-08-12 23:09:04,250 INFO  - Loaded 162,248 standard spellings in 1 second.
+2020-08-12 23:09:05,081 INFO  - Loaded 358,726 alternative spellings in 1 second.
+2020-08-12 23:09:05,082 INFO  - Loaded 352 more alternative spellings in 15 word classes in 1 second.
