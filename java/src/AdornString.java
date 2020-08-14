@@ -240,7 +240,7 @@ public class AdornString
 	return (lemma);
     }
 
-    public void adorn_string(String raw) {
+    public ArrayList<String[]> adorn_string(String raw) {
 	// class needs to be initialized!
 	List<List<String>> sentences = this.splitter.extractSentences(raw, this.tokenizer);
 	int[] sentence_and_word_count = MorphAdornerUtils.getWordAndSentenceCounts( sentences );
@@ -281,8 +281,14 @@ public class AdornString
 		stds[i] = std;
 		originals[i] = original;
 		poss[i] = pos;
-		System.out.println(original + " " + pos + " " + lemma + " " + std);
 	    }//for each word
 	}//while sentences
+
+	ArrayList<String[]> results = new ArrayList<String[]>();
+	results.add(lemmas);
+	results.add(stds);
+	results.add(originals);
+	results.add(poss);
+	return (results);
     }
 }
