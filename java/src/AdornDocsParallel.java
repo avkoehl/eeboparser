@@ -13,12 +13,12 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
 import morph.MongoConnection;
-import morph.AdornString;
+import morph.StringAdorn;
 
 public class AdornDocsParallel 
 {
 
-    public Document adorn_doc(AdornString adorner, Document doc) {
+    public Document adorn_doc(StringAdorn adorner, Document doc) {
 	String raw = doc.get("raw").toString();
 	ArrayList<String[]> results = adorner.adorn_string(raw);
 
@@ -29,7 +29,7 @@ public class AdornDocsParallel
 	return (doc);
     }
 
-    public void adorn_documents(AdornString adorner, 
+    public void adorn_documents(StringAdorn adorner, 
 	    ArrayList<Document> docs, 
 	    MongoDatabase db,
 	    String collection_name,
@@ -37,8 +37,8 @@ public class AdornDocsParallel
 	docs.parallelStream().forEach((temp) -> {
 	    Document d = this.adorn_doc(adorner, temp);
 
-	    MongoCollection<Document> collection = db.getCollection(collection_name);
-	    collection.replaceOne(Filters.eq("_id", d.get("_id")), d);
+	    //MongoCollection<Document> collection = db.getCollection(collection_name);
+	    //collection.replaceOne(Filters.eq("_id", d.get("_id")), d);
 	});
     }
 
@@ -47,7 +47,7 @@ public class AdornDocsParallel
 	MongoConnection con = new MongoConnection();
 	MongoDatabase db = con.connect_to_db("../mongo-credentials.json");
 	AdornDocsParallel runner = new AdornDocsParallel();
-	AdornString adorner = new AdornString();
+	StringAdorn adorner = new StringAdorn();
 
 	ArrayList<Document> docs = con.read_from_db(db, "docs");
 	runner.adorn_documents(adorner, docs, db, "docs", "docs.truncated");

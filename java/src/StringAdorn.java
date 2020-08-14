@@ -25,7 +25,7 @@ import edu.northwestern.at.morphadorner.corpuslinguistics.namestandardizer.*;
 import edu.northwestern.at.morphadorner.corpuslinguistics.namerecognizer.*;
 
 
-public class AdornString
+public class StringAdorn
 {
     String latinWordsFileName = "./morphadorner-data/resources/latinwords.txt";
     String lemmaSeparator="-";
@@ -54,7 +54,7 @@ public class AdornString
     MorphAdornerSettings settings = null;
     MorphAdornerLogger logger = null;
 
-    public AdornString() {
+    public StringAdorn() {
 	MorphAdornerSettings settings = new MorphAdornerSettings();
 	MorphAdornerLogger logger = null;
 	try {
