@@ -31,15 +31,21 @@ def open_db_connection(fname, overwrite = True):
             exit()
     return (mydb)
 
+# these four are unnecessary in the mongo util script. remove them and just do this stuff from the main executable
+
+# eebo xml as raw utf8 strings
+# everything else as arrays of strings
+# rewrite parse xml to pull from the database?
+# yeah, just load whole thing into memorry parse xml takes in list of strings (full xml file content)
+# rename corpus.py to main.py
+# insert the xml with main.py
+# also call the java jar from the main.py
+def insert_xml(mydb, xml
 def insert_metadata(mydb, metadata_list):
     mydb["docs.metadata"].insert_many(metadata_list)
 
 def insert_content(mydb, content_list, truncated_content_list):
-    large_content_list = []
-    # iterate through content list, moving documents that are too large into another list
-
-    # insert the large documents using grid fs
-
-    # finally insert the two lists (truncated and remaining content_list items
     mydb["docs"].insert_many(content_list)
     mydb["docs.truncated"].insert_many(truncated_content_list)
+
+#def insert_large_documents(mydb, large_content_list):

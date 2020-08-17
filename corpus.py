@@ -10,8 +10,16 @@ import python.mongo as m
 print("connecting to mongo database")
 mydb = m.open_db_connection("mongo-credentials.json")
 
-print("parsing xml")
+print("reading in xml documents")
+xml = []
 files = list(Path("../data/").glob('**/*.xml'))
+for f in files:
+    xml.append(f.read())
+
+print("write to database")
+
+
+print("parsing xml")
 results = Parallel(n_jobs=20)(delayed(px.parse_xml)(f) for f in files[1:10000])
 
 print("inserting into database")
