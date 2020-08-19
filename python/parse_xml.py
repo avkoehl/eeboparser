@@ -133,13 +133,19 @@ def get_meta(root):
             "Language": languages,
             "Date": date})
 
-def parse_xml(fname):
-    with open(fname, encoding='utf8') as infile:
-        root = ET.fromstring (
-                inter_word_tags_preprocess(infile.read())
+def parse_xml(_id, xmlstring):
+    root = ET.fromstring (
+                inter_word_tags_preprocess(xmlstring)
                 )
+    meta = get_meta(root)
+    root = handle_gaps(root)
+    content = get_content(root.find("EEBO"))
 
-        meta = get_meta(root)
-        root = handle_gaps(root)
-        content = get_content(root.find("EEBO"))
-        return(meta, content)
+    meta["_id"] = _id
+    text = {}
+    text["_id"] = _id
+    text["text"] = content
+    truncated = {}
+    truncated["_id"] = _id
+    truncated["text"] = content[0:500]
+    return(meta, text, truncated)
