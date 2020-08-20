@@ -195,7 +195,7 @@ public class StringAdorn
     }
 
     public String standardize_spelling(String word, String pos) {
-	String std = "";
+	String std = word;
 	if (! ( this.tags.isProperNounTag(pos) || this.tags.isNounTag(pos) ||
 		    CharUtils.hasInternalCaps(word) || this.tags.isForeignWordTag(pos) ||
 		    this.tags.isNumberTag(pos) )) {
@@ -277,10 +277,11 @@ public class StringAdorn
 		std = this.standardize_spelling(std, pos);
 		std = this.map.mapSpelling(std);
 		lemma = this.lemmatize(adorned_word.getSpelling(), pos);
-		lemmas[i] = lemma;
-		stds[i] = std;
-		originals[i] = original;
-		poss[i] = pos;
+		lemmas[count] = lemma;
+		stds[count] = std;
+		originals[count] = original;
+		poss[count] = pos;
+		count = count + 1;
 	    }//for each word
 	}//while sentences
 
