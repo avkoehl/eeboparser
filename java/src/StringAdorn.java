@@ -244,29 +244,23 @@ public class StringAdorn
 	// class needs to be initialized!
 	List<List<String>> sentences = this.splitter.extractSentences(raw, this.tokenizer);
 	int[] sentence_and_word_count = MorphAdornerUtils.getWordAndSentenceCounts( sentences );
-	int wc = sentence_and_word_count[1];
-
 	List<List<AdornedWord>> result = this.tagger.tagSentences(sentences);
 
+	ArrayList<String[]> adorned_list = new ArrayList<String[]>();
 	String lemma = "";
 	String std = "";
 	String original = "";
 	String pos = "";
 	AdornedWord adorned_word;
 
-	String[] lemmas = new String[wc];
-	String[] stds = new String[wc];
-	String[] originals = new String[wc];
-	String[] poss = new String[wc];
 
 	Iterator<List<AdornedWord>> iterator = result.iterator();
 
-	// iterate through tagged sentences to get lemma,std,pos, original
-	int count = 0;
 	while (iterator.hasNext()) {
 	    List<AdornedWord> sentence = iterator.next();
 	    for (int i = 0; i < sentence.size(); i++)
 	    {
+	        String[] adorned = new String[4];
 		adorned_word = sentence.get(i);
 		original = adorned_word.getToken();
 		pos = adorned_word.getPartsOfSpeech();
@@ -277,19 +271,15 @@ public class StringAdorn
 		std = this.standardize_spelling(std, pos);
 		std = this.map.mapSpelling(std);
 		lemma = this.lemmatize(adorned_word.getSpelling(), pos);
-		lemmas[count] = lemma;
-		stds[count] = std;
-		originals[count] = original;
-		poss[count] = pos;
-		count = count + 1;
+
+		adorned[0] = original;
+		adorned[1] = std;
+		adorned[2] = lemma;
+		adorned[3] = pos;
+		adorned_list.add(adorned);
 	    }//for each word
 	}//while sentences
 
-	ArrayList<String[]> results = new ArrayList<String[]>();
-	results.add(lemmas);
-	results.add(stds);
-	results.add(originals);
-	results.add(poss);
-	return (results);
+	return (adorned_list);
     }
 }
