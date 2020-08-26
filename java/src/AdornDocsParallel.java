@@ -33,6 +33,7 @@ public class AdornDocsParallel
 	docs.forEach((temp) -> {
 	    int id = (int)temp.get("_id");
 	    String text = temp.get("text").toString();
+	    System.out.println("Processing doc " + String.valueOf(id));
 
 	    ArrayList<String[]> result = adorner.adorn_string(text); 
 	    
@@ -91,12 +92,21 @@ public class AdornDocsParallel
 
     public static void main( String[] args)
     {
+
+	long heapMaxSize = Runtime.getRuntime().maxMemory() / 1000000;
+	System.out.println(heapMaxSize);
+
+	System.out.println("connecting to database");
 	MongoConnection con = new MongoConnection();
 	MongoDatabase db = con.connect_to_db("../mongo-credentials.json");
+	System.out.println("reading data from database");
+	ArrayList<Document> docs = con.read_from_db(db, "docs.text");
+
+	System.out.println("initializing adorner");
 	AdornDocsParallel runner = new AdornDocsParallel();
 	StringAdorn adorner = new StringAdorn();
 
-	ArrayList<Document> docs = con.read_from_db(db, "docs.text");
+	System.out.println("Adorning documents");
 	runner.adorn_documents(adorner, docs, db);
     }// main
 }
