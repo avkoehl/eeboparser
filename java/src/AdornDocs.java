@@ -7,9 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 
 import edu.northwestern.at.morphadorner.MorphAdorner;
+import com.mongodb.client.FindIterable; 
 import com.mongodb.client.MongoDatabase; 
 import com.mongodb.client.MongoCollection; 
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 
 import morph.MongoConnection;
@@ -25,15 +27,21 @@ public class AdornDocs
 	MongoCollection<Document> poscol = db.getCollection("docs.pos");
 	MongoCollection<Document> stdcol = db.getCollection("docs.std");
 	MongoCollection<Document> truncatedcol = db.getCollection("docs.truncated");
-	lemmacol.drop();
-	poscol.drop();
-	stdcol.drop();
-	truncatedcol.drop();
 
 	docs.forEach((temp) -> {
 	    int id = (int)temp.get("_id");
-	    String text = temp.get("text").toString();
+
+	    FindIterable<Document> l = lemmacol.find(Filters.eq("_id", id));
+	    FindIterable<Document> p = lemmacol.find(Filters.eq("_id", id));
+	    FindIterable<Document> s = lemmacol.find(Filters.eq("_id", id));
+	    FindIterable<Document> t = lemmacol.find(Filters.eq("_id", id));
+
+	    if (l != null && p != null && s != null && t != null) {
+		return; // everything in the foreach is a lambda method so this works as a continue statement
+	    }
+
 	    System.out.println("Processing doc " + String.valueOf(id));
+	    String text = temp.get("text").toString();
 
 	    try {
 		ArrayList<String[]> result = adorner.adorn_string(text); 
