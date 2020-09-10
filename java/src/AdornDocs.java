@@ -15,7 +15,7 @@ import org.bson.Document;
 import morph.MongoConnection;
 import morph.StringAdorn;
 
-public class AdornDocsParallel 
+public class AdornDocs 
 {
     public void adorn_documents(StringAdorn adorner, 
 	    ArrayList<Document> docs, 
@@ -100,7 +100,7 @@ public class AdornDocsParallel
 	ArrayList<Document> docs = con.read_from_db(db, "docs.text");
 
 	System.out.println("initializing adorner");
-	AdornDocsParallel runner = new AdornDocsParallel();
+	AdornDocs runner = new AdornDocs();
 	StringAdorn adorner = new StringAdorn();
 
 	System.out.println("Adorning documents");
