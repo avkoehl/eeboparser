@@ -5,6 +5,9 @@ __pycache__/
 # vim swap files
 *.swp
 
+# sample data
+sample_data
+
 # sensitive information
 mongo-credentials.json
 

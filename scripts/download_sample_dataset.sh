@@ -1,3 +1,6 @@
+rm -r ../sample_data
+mkdir ../sample_data
+
 wget https://raw.githubusercontent.com/textcreationpartnership/A16110/master/A16110.xml
 wget https://raw.githubusercontent.com/textcreationpartnership/A17121/master/A17121.xml
 wget https://raw.githubusercontent.com/textcreationpartnership/A20596/master/A20596.xml
@@ -98,3 +101,5 @@ wget https://raw.githubusercontent.com/textcreationpartnership/A68949/master/A68
 wget https://raw.githubusercontent.com/textcreationpartnership/A16167/master/A16167.xml
 wget https://raw.githubusercontent.com/textcreationpartnership/A16214/master/A16214.xml
 wget https://raw.githubusercontent.com/textcreationpartnership/A16393/master/A16393.xml
+
+mv *.xml ../sample_data/
