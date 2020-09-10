@@ -54,9 +54,6 @@ public class AdornDocsParallel
 		lemma.add(result.get(i)[2]);
 		pos.add(result.get(i)[3]);
 
-	//	if (i < 10) {
-	//	System.out.println(original.get(i) + " " + std.get(i) + " " + lemma.get(i) + " " + pos.get(i));
-	//	}
 	    }
 
 	    
@@ -79,7 +76,7 @@ public class AdornDocsParallel
 	    stdcol.insertOne(sd);
 
 	    // add fields to docs.truncated (std, lemma, pos)
-	    int index = Math.min(500, result.get(0).length);
+	    int index = Math.min(500, original.size());
 	    Document td = new Document();
 	    td.append("_id", id);
 	    td.append("lemma", lemma.subList(0, index));
