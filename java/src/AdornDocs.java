@@ -94,6 +94,11 @@ public class AdornDocs
 
     public static void main( String[] args)
     {
+	boolean overwrite = false;
+
+	if (args[0] == "--overwrite") {
+	    overwrite = true;
+	}
 
 	long heapMaxSize = Runtime.getRuntime().maxMemory() / 1000000;
 	System.out.println(heapMaxSize);
@@ -109,6 +114,18 @@ public class AdornDocs
 	StringAdorn adorner = new StringAdorn();
 
 	System.out.println("Adorning documents");
+
+	if (overwrite) {
+	    MongoCollection<Document> lemmacol = db.getCollection("docs.lemma");
+	    MongoCollection<Document> poscol = db.getCollection("docs.pos");
+	    MongoCollection<Document> stdcol = db.getCollection("docs.std");
+	    MongoCollection<Document> truncatedcol = db.getCollection("docs.truncated");
+	    lemmacol.drop();
+	    poscol.drop();
+	    stdcol.drop();
+	    truncatedcol.drop();
+	}
+
 	runner.adorn_documents(adorner, docs, db);
     }// main
 }
