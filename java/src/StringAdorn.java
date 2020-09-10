@@ -240,10 +240,18 @@ public class StringAdorn
 	return (lemma);
     }
 
-    public ArrayList<String[]> adorn_string(String raw) {
+    public ArrayList<String[]> adorn_string(String raw) throws Exception{
 	// class needs to be initialized!
+
+	// split string into sentences
 	List<List<String>> sentences = this.splitter.extractSentences(raw, this.tokenizer);
 	int[] sentence_and_word_count = MorphAdornerUtils.getWordAndSentenceCounts( sentences );
+
+	if (sentence_and_word_count[0] == 0 && sentence_and_word_count[0] == 0) {
+	    throw new Exception("No sentences or words parsed from document");
+	}
+
+	// get parts of speech
 	List<List<AdornedWord>> result = this.tagger.tagSentences(sentences);
 
 	ArrayList<String[]> adorned_list = new ArrayList<String[]>();
@@ -253,9 +261,9 @@ public class StringAdorn
 	String pos = "";
 	AdornedWord adorned_word;
 
-
 	Iterator<List<AdornedWord>> iterator = result.iterator();
 
+	// for each word get std, and lemma
 	while (iterator.hasNext()) {
 	    List<AdornedWord> sentence = iterator.next();
 	    for (int i = 0; i < sentence.size(); i++)
