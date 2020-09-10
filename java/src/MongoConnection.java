@@ -68,11 +68,4 @@ public class MongoConnection {
 	}
 	return(docs);
     }
-
-    public void write_to_db(ArrayList<Document> docs, MongoDatabase db, String collection_name) {
-	//probably not used
-	MongoCollection<Document> collection = db.getCollection(collection_name);
-	collection.drop();
-	collection.insertMany(docs);
-    }
 }
