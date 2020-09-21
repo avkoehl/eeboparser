@@ -27,7 +27,9 @@ public class AdornDocs
 	    .find(Filters.eq("_id", id)).first();
 
 	if (l != null) {
-	    return true;
+	    if (!l.getString("lemma").isEmpty()) {
+	        return true;
+	    }
 	}
 	return false;
     }
