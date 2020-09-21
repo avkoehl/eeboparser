@@ -11,6 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase; 
 import com.mongodb.client.MongoCollection; 
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions; 
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 
@@ -19,43 +20,101 @@ import morph.StringAdorn;
 
 public class AdornDocs 
 {
+    public boolean check_database(int id, MongoDatabase db) {
+	// if already adorned return true; else return false 
+	// if lemma, assume it exists in the others..
+	Document l = db.getCollection("docs.lemma")
+	    .find(Filters.eq("_id", id)).first();
+
+	if (l != null) {
+	    return true;
+	}
+	return false;
+    }
+
+    public void write_documents(int id, ArrayList<String> lemma, 
+	    ArrayList<String> pos, ArrayList<String> std,
+	    ArrayList<String> original, MongoDatabase db) {
+
+	Document ld = new Document();
+	ld.append("lemma", String.join("\t", lemma)).append("_id", id);
+	db.getCollection("docs.lemma").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.lemma").insertOne(ld);
+
+	// write to docs.pos
+	Document pd = new Document();
+	pd.append("pos", String.join("\t", pos)).append("_id", id);
+	db.getCollection("docs.pos").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.pos").insertOne(pd);
+
+	// write to docs.std
+	Document sd = new Document();
+	sd.append("std", String.join("\t", std)).append("_id", id);
+	db.getCollection("docs.std").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.std").insertOne(sd);
+
+	// add fields to docs.truncated (std, lemma, pos)
+	int index = Math.min(500, original.size());
+	Document td = new Document();
+	td.append("_id", id)
+	    .append("lemma", String.join("\t", lemma.subList(0, index)))
+	    .append("pos", String.join("\t", pos.subList(0, index)))
+	    .append("std", String.join("\t", std.subList(0, index)))
+	    .append("original", String.join("\t", original.subList(0, index)));
+	db.getCollection("docs.truncated").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.truncated").insertOne(td);
+    }
+
+    public void write_empty_documents(int id, MongoDatabase db) {
+	Document ld = new Document();
+	ld.append("lemma", "").append("_id", id);
+	db.getCollection("docs.lemma").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.lemma").insertOne(ld);
+
+	Document pd = new Document();
+	pd.append("pos", "").append("_id", id);
+	db.getCollection("docs.pos").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.pos").insertOne(pd);
+
+	Document sd = new Document();
+	sd.append("std", "").append("_id", id);
+	db.getCollection("docs.std").deleteOne(Filters.eq("_id", id));
+	db.getCollection("docs.std").insertOne(sd);
+
+	Document td = new Document();
+	td.append("_id", id).append("std", "").append("lemma", "")
+	    .append("pos", "").append("original", "");
+	db.getCollection("docs.truncated").deleteOne(Filters.eq("_id",id));
+	db.getCollection("docs.truncated").insertOne(td);
+    }
+
     public void adorn_documents(StringAdorn adorner, 
 	    ArrayList<Document> docs, 
 	    MongoDatabase db) {
 
-	MongoCollection<Document> lemmacol = db.getCollection("docs.lemma");
-	MongoCollection<Document> poscol = db.getCollection("docs.pos");
-	MongoCollection<Document> stdcol = db.getCollection("docs.std");
-	MongoCollection<Document> truncatedcol = db.getCollection("docs.truncated");
-
+	// redo this
 	docs.forEach((temp) -> {
 	    int id = (int)temp.get("_id");
+	    String text = temp.get("text").toString();
+	    System.out.println("Processing doc " + String.valueOf(id));
 
-	    FindIterable<Document> l = lemmacol.find(Filters.eq("_id", id));
-	    FindIterable<Document> p = lemmacol.find(Filters.eq("_id", id));
-	    FindIterable<Document> s = lemmacol.find(Filters.eq("_id", id));
-	    FindIterable<Document> t = lemmacol.find(Filters.eq("_id", id));
-
-	    if (l != null && p != null && s != null && t != null) {
-		return; // everything in the foreach is a lambda method so this works as a continue statement
+	    if (text.isEmpty()) {
+		this.write_empty_documents(id, db);
+		System.out.println("... writing empty document");
+		return;
 	    }
 
-	    System.out.println("Processing doc " + String.valueOf(id));
-	    String text = temp.get("text").toString();
+	    if (this.check_database(id, db)) {
+		System.out.println("... already in database, skipping");
+		return;
+	    }
 
 	    try {
 		ArrayList<String[]> result = adorner.adorn_string(text); 
-
-		// this is a list of string arrays
-		// each entry is the 4 forms of the word:
-		// original, std, lemma, pos
-
 		ArrayList<String> original = new ArrayList<String>();
 		ArrayList<String> std = new ArrayList<String>();
 		ArrayList<String> lemma = new ArrayList<String>();
 		ArrayList<String> pos = new ArrayList<String>();
-
-		//System.out.println("-------------------------------");
 
 		for (int i = 0; i < result.size(); i++) {
 		    original.add(result.get(i)[0]);
@@ -64,35 +123,7 @@ public class AdornDocs
 		    pos.add(result.get(i)[3]);
 
 		}
-
-
-		// write to docs.lemma
-		Document ld = new Document();
-		ld.append("lemma", String.join("\t", lemma));
-		ld.append("_id", id);
-		lemmacol.insertOne(ld);
-
-		// write to docs.pos
-		Document pd = new Document();
-		pd.append("pos", String.join("\t", pos));
-		pd.append("_id", id);
-		poscol.insertOne(pd);
-
-		// write to docs.std
-		Document sd = new Document();
-		sd.append("std", String.join("\t", std));
-		sd.append("_id", id);
-		stdcol.insertOne(sd);
-
-		// add fields to docs.truncated (std, lemma, pos)
-		int index = Math.min(500, original.size());
-		Document td = new Document();
-		td.append("_id", id);
-		td.append("lemma", lemma.subList(0, index));
-		td.append("pos", pos.subList(0, index));
-		td.append("std", std.subList(0, index));
-		td.append("original", original.subList(0, index));
-		truncatedcol.insertOne(td);
+		this.write_documents(id, lemma, pos, std, original, db);
 	    }
 	    catch (Exception e) {
 		System.out.println(e.getMessage());
@@ -104,8 +135,10 @@ public class AdornDocs
     {
 	boolean overwrite = false;
 
-	if (args[0] == "--overwrite") {
-	    overwrite = true;
+	if (args.length != 0) {
+	    if (args[0] == "--overwrite") {
+		overwrite = true;
+	    }
 	}
 
 	long heapMaxSize = Runtime.getRuntime().maxMemory() / 1000000;
