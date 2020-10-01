@@ -12,8 +12,26 @@ def handle_gaps(root):
         if g.get("EXTENT") == "2 letters" : g.text = "**"
     return(root)
 
-def get_content(eebo):
-    textslist = [" ".join(t.itertext()) for t in eebo.findall(".//TEXT")]
+def check_if_nested(node, parent_map):
+    parent = parent_map[node]
+
+    while parent.tag != "ETS":
+        if parent.tag == "TEXT":
+            return True
+        parent = parent_map[parent]
+
+    return False
+
+def get_content(root):
+    # get all nodes named TEXT (".//TEXT")
+    textnodes = root.findall(".//TEXT")
+
+    # construct parent map
+    parent_map = {c:p for p in root.iter() for c in p}
+
+    filtered = [n for n in textnodes if not check_if_nested(n, parent_map)]
+
+    textslist = [" ".join(t.itertext()) for t in filtered]
     content = " ".join(textslist)
 
     # since they got needlessely delimited in " ".join(t.itertext()
@@ -21,8 +39,9 @@ def get_content(eebo):
     content = content.replace(" ** ", "**")
 
     # not removing non standard characters
-
     content = " ".join(content.split())
+    content = content.replace("|", "")
+    content = content.replace("∣", "") # this is a different character to the line above which is normal pipe |
 
     return(content)
 
@@ -139,7 +158,7 @@ def parse_xml(_id, xmlstring):
                 )
     meta = get_meta(root)
     root = handle_gaps(root)
-    content = get_content(root.find("EEBO"))
+    content = get_content(root)
 
     meta["_id"] = _id
     text = {}

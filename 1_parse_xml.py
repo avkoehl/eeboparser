@@ -21,7 +21,7 @@ for col in ["docs.xml", "docs.xml.chunks", "docs.xml.files",
 
 print("reading in xml documents")
 files = list(Path(input_dir).glob('**/*.xml'))
-xml = [ut.get_xml_content(i, fname) for i, fname in enumerate(files[0:99])]
+xml = [ut.get_xml_content(i, fname) for i, fname in enumerate(files)]
 
 print("write to database")
 m.insert_xml_gridfs(mydb, "docs.xml", xml)
@@ -32,6 +32,10 @@ results = Parallel(n_jobs=ncores)(delayed(px.parse_xml)(x["_id"],
 
 print("inserting parsed corpus into database")
 meta, texts,truncated = zip(*results)
+
+lens = [len(t["text"]) for t in texts]
+lens2 = [len(x["xml"]) for x in xml]
+
 r = mydb["docs.meta"].insert_many(meta)
 r = mydb["docs.truncated"].insert_many(truncated)
 r = mydb["docs.text"].insert_many(texts)
