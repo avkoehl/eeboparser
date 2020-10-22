@@ -5,11 +5,13 @@ PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<=>?@\^_`{|}~]'
 
 def clean_meta(meta):
     """ where meta is a list of dicts"""
+    # keywords, Language already normalized
+    # really just Date, Author, Locations
+
     df = pd.DataFrame.from_records(meta)
-    df["Location"].map(clean_locations)
-    df["Date"].map(clean_dates)
-    df["Author"].map(clean_authors)
-    df["Keywords"].map(clean_keywords)
+    df["Location"] = df["Location"].map(clean_locations)
+    df["Date"] = df["Date"].map(clean_dates)
+    df["Author"] = df["Author"].map(clean_authors)
     return df.to_records(index=False)
 
 def clean_locations(location):
@@ -41,10 +43,32 @@ def clean_locations(location):
 def clean_dates(date):
     """ to be mapped to dates column """
     
-def clean_authors:(author):
+def clean_authors(authors):
     """ to be mapped to authors column """
 
-def clean_keywords: (keywords):
-    """ to be mapped to keywords column """
+    cleaned_authors = []
+    # split on authors
+    # for each:
+    for author in authors:
+        # remove non capital words
+        words = author.split()
+        author = " ".join([w for w in words if w[0].isupper()])
+        author = author.lower()
 
+        # remove digits and punct
+        author = re.sub(r'\d+', '', author) # remove digits
+        author = re.sub(PUNCT_RE, '', author) # remove punctuation
+        author = re.sub(r'\s\s+', ' ', author)  # Handle excess whitespace
+        author = author.strip()  # No whitespace at start and end of string
 
+        # remove extraneous expressions (not sure if necessary)
+        blacklist = ["fl", "of", "or", "aut", "de", "d",
+                "ca", "attributed", "name"]
+        author = author.split()
+        author = ' '.join([w for w in author if w not in blacklist])
+        author = author.strip()
+
+        # additional cleaning TODO from https://github.com/datalab-dev/quintessence_corpus/blob/master/meta_cleaning.R#L206
+        cleaned_authors.append(author)
+
+    return cleaned_authors
