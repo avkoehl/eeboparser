@@ -8,23 +8,23 @@ import pymongo
 import python.utils as ut
 import python.parse_xml as px
 import python.mongo as m
-
+#import python.clean_meta as cm
 
 input_dir = "../data/"
 ncores = 4
 
-print("connecting to mongo database")
-mydb = m.open_db_connection("mongo-credentials.json")
-for col in ["docs.xml", "docs.xml.chunks", "docs.xml.files", 
-        "docs.meta", "docs.text", "docs.truncated"]:
-    mydb[col].drop()
+#print("connecting to mongo database")
+#mydb = m.open_db_connection("mongo-credentials.json")
+#for col in ["docs.xml", "docs.xml.chunks", "docs.xml.files", 
+#        "docs.meta", "docs.text", "docs.truncated"]:
+#    mydb[col].drop()
 
 print("reading in xml documents")
 files = list(Path(input_dir).glob('**/*.xml'))
-xml = [ut.get_xml_content(i, fname) for i, fname in enumerate(files)]
+xml = [ut.get_xml_content(i, fname) for i, fname in enumerate(files[0:500])]
 
-print("write to database")
-m.insert_xml_gridfs(mydb, "docs.xml", xml)
+#print("write to database")
+#m.insert_xml_gridfs(mydb, "docs.xml", xml)
 
 print("parsing xml")
 results = Parallel(n_jobs=ncores)(delayed(px.parse_xml)(x["_id"], 
@@ -33,9 +33,7 @@ results = Parallel(n_jobs=ncores)(delayed(px.parse_xml)(x["_id"],
 print("inserting parsed corpus into database")
 meta, texts,truncated = zip(*results)
 
-lens = [len(t["text"]) for t in texts]
-lens2 = [len(x["xml"]) for x in xml]
 
-r = mydb["docs.meta"].insert_many(meta)
-r = mydb["docs.truncated"].insert_many(truncated)
-r = mydb["docs.text"].insert_many(texts)
+#r = mydb["docs.meta"].insert_many(meta)
+#r = mydb["docs.truncated"].insert_many(truncated)
+#r = mydb["docs.text"].insert_many(texts)
