@@ -33,6 +33,10 @@ results = Parallel(n_jobs=ncores)(delayed(px.parse_xml)(x["_id"],
 print("inserting parsed corpus into database")
 meta, texts,truncated = zip(*results)
 
+# clean meta
+
+# look at number of unique values per column and print them out
+
 
 #r = mydb["docs.meta"].insert_many(meta)
 #r = mydb["docs.truncated"].insert_many(truncated)
