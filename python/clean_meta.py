@@ -1,17 +1,21 @@
 import pandas as pd
 import re
 
-PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<=>?@\^_`{|}~]'
+PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<>?@\^_`{|}~]'
 
 def clean_meta(meta):
     """ where meta is a list of dicts"""
     # keywords, Language already normalized
+    # TODO: keywords need to be split on --
     # really just Date, Author, Locations
 
     df = pd.DataFrame.from_records(meta)
     df["Location"] = df["Location"].map(clean_locations)
     df["Date"] = df["Date"].map(clean_dates)
     df["Author"] = df["Author"].map(clean_authors)
+
+    # TODO verify results with value_counts and nunique, and comparisons
+    # such as print all the original values that mapped to london...
     return df.to_records(index=False)
 
 def clean_locations(location):
@@ -24,24 +28,51 @@ def clean_locations(location):
     location = re.sub(r'\s\s+', ' ', location)  # Handle excess whitespace
     location = location.strip()  # No whitespace at start and end of string
 
+
     # remove unwanted terms (stopwords, prepositions, variations of printed)
     blacklist = [
-            "printed", "prynted", "imprinted", "enprynted", "imprynted",
+            "i", "a\'i", "printed", "prynted", "imprinted", "enprynted", "imprynted",
             "imprented", "imprentit", "excusum", "printiedig",
             "anno domini", "anno", "are", "for", "of", "within", "by", "at",
-            "the", "and", "in", "sic", "re", "im", "jm", "er", "em", "an", 
-            "yn", "en", "a"]
+            "printio", "the", "and", "in", "sic", "re", "im", "jm", "er", "em", "an", 
+            "yn", "en", "a", "ad", "briniwyd", "brintio", "brio"]
 
     location = location.split()
     location = ' '.join([x for x in location if x not in blacklist])
     location = location.strip()
 
-    # TODO: add manual mapping of locations based on Sam's corrected spelling list
+    # then single word mapping
+    # then phrases (without stopwrods)
+    # then the ie londons (ie single word)
 
     return location
 
 def clean_dates(date):
     """ to be mapped to dates column """
+
+    # remove non digits and spaces and dashes and slashes
+    t = date
+    date = str(date)
+    date = re.sub("[^0-9 \/\\-]", "", date)
+    date = date.replace("-", " ")
+    dates = date.split()
+
+    # TODO look for tri-dates (three digit dates)
+    # TODO add Sam's manual corrections
+
+    # loop through
+    # once a 4 diit number is reached, keep that as the date
+    # note that this keeps the first one, e.g in a date range
+    # if 5 digits and has a / such as 1545/6 keep the first 4 digits
+    # so that the date would be 1545
+    clean_date = ""
+    for d in dates:
+        if len(d) == 4:
+            clean_date = d
+            break
+        if len(d) == 5 and d.contains("/"):
+            clean_date = date[0:4]
+    return clean_date
     
 def clean_authors(authors):
     """ to be mapped to authors column """
@@ -68,7 +99,6 @@ def clean_authors(authors):
         author = ' '.join([w for w in author if w not in blacklist])
         author = author.strip()
 
-        # additional cleaning TODO from https://github.com/datalab-dev/quintessence_corpus/blob/master/meta_cleaning.R#L206
         cleaned_authors.append(author)
 
     return cleaned_authors
