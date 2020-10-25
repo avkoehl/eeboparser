@@ -1,451 +1,35 @@
-check adorner as well
-remove /
-
-STOPWORDS
-baker
-xi
-octoberdo
-robert
-ymlen
-last
-february
-daye
-west
-smithfield
-cliefe 
-lande
-we
-know
-where
-whan
-judge
-you
-place
-can
-to
-theater
-translated
-thackwell
-south
-stampato
-gait
-southern
-on
-back-side
-cyclopean
-mountains
-sold
-p
-sheet
-september
-blew
-bitche
-doglane
-ratisbonne
-pruntiedig
-ptinted
-published
-prointed
-printiedic
-print
-preintiedig
-prented
-prentid
-prentit
-pranted
-place
-not
-farre
-cum
-privilegio
-octob
-newely
-newlie
-m
-may
-mdxlix
-made
-stephen
-buckley
-smithfield
-parsih
-saynt
-barthelmewes
-hospitall
-special
-order
-temstrete
-ouer
-agaynste
-stiliardes
-dobbel
-hood
-three
-cranes
-vintree
-to
-prevent
-mis-information
-stephen
-buckley
-re-painted
-paules
-churche
-yarde
-sygne
-holye
-ghost
-churcheyarde
-signe
-lucrece
-holy
-ghost
-poules
-povvles
-powles
-temple
-barre
-hande
-starre
-hand
-fleetestreate
-beneath
-conduit
-signe
-john
-euangelist
-fleetestete
-flete
-strete
-sonne
-nere
-vnto
-sayncte
-dunstons
-aldergate
-strete
-blacke
-friers
-not
-profit
-but
-common
-weles
-good
-no
-where
-to
-be
-sold
-but
-some
-where
-to
-be
-given
-iohn
-wright
-mathew
-collins
-three
-black
-birds
-cannon-street
-robert
-barker
-assignes
-john
-bill
-william
-grantham
-cock-pit
-alley
-near
-ih
-t
-ryder
-licensed
-according
-order
-drury-lane
-really
-abroad
-jmprented
-jmprentit
-july
-fetestrete
-sygne
-rose
-garlande
-robert
-copland
-imprynded
-imprnted
-impryntid
-impynted 
-inpryntyd 
-iohn
-legat
-&
-aux
-impressum
-impressus
-impressa
-impresso
-imprime
-imprimée
-nouuellement
-imprined
-imprinnted
-imprínted 
-imprînted
-imprentit
-â 
-imprined
-à 
- ̀
-xx
-day
-mowneth
-may
-impress
-imprentyt
-imprentyd
-impreneted
-impkinted
-at
-ig
-ianuarij primus
-his
-majesties
-command
-decemb
-ianuary
-haue
-march
-gedruckt
-haec
-naer
-van
-'s
-gravenhage
-tot
-fynyshhed
-thabbey
-our
-heart
-excussum
-excudebat
-from
-first
-towne
-enprentyd
-enprented
-exempt
-monastery
-tauestok
-ye
-famous
-cite
-emprentyd 
-emprented
-ye
-day
-july
-re-
-conform
-to
-copy
-christopher
-higgins
-harts-close
-over
-against
-trone-church
-decemb
-darby-house
-cyte
-with
-licence
-brintiwyd
-brintwyd
-brintywyd
-ir
-awdwr
-ar
-na
-chur
-ngclò 
-ndùn-éduin
-att
-i
-brintio
-printio
-a\'i (maybe replace the ' with punctuation removal?)
-ad
-ai
-brio
-printfodd
-printio
-ag
-briniwyd
-amongst
-city
-marchandise
-knowen
-vnto
-india
-all
-limites
-earth
-naar
-de
-copie
-gedruckt
-md
-argraphedig
-argraphwyd
-argraphwŷd
-then
-nowe
-duflan
-y
-yng
-att
-atte
-audomari
-dem
-zu
-und
-rach
-aussgegertigt (copy?)
-gedruckten
-exemplar
-be
-newly
-betweene
-skye
-grounde
-vvithin
-myle
-oake
-not
-many
-fieldes
-n (ne
-e (new england, comes after n)
-ne (new england)
-breintiuyd
-breintivvyd
-ninas
-nov (nov anglorum?
-ang (nov anglorum?)
-anglorum
-do
-so
-diuireadh
-ngclò
-ndùn-edin
-
 EXETER
 exeter devon
 
-DENSHIRE
-denshyre
-
 DOWAY
 douay douai
-douai
-douay
-doüay
-dovvay
 dovvay rheims
-dowa
 dowa ie douai
-dowaie
-now (maybe replace now with ie?)
 
 DUBLIN
-dubdin
 dublin edinburgh - dublin ie edinburgh
-dubline
-dublinii
-dvblin
 dublin london - dublin ie london
 
 FRANKFORT
-franckford
-franckfort
 francoforti moenum
-frankofourd
 
 EDINBURGH
 holy-rood-house edinburgh
 holy-rood-house ie edinburgh
-eclinburgh
-edenborough
 edenborough scotland
-edenbrough
-edenburg
-edenburgh
 edenburgh london - edinburgh ie london
 edinburg london - edinburgh ie london
-edenburgi
-ediburgh
-edimbourg
-edinb
-edinbourg
-edinbrugh
-edinburg
-edinburgh
 edinburgh aberdene - edinburgh ie aberdene
 edinburgh glasgow - edinburgh ie glasgow
 edinburgh or st andrews - edinburgh
-edinburghi
-edinburgi
-edinburh
-edinbvrgh
 edinbvrgh london - edinburgh ie london
-edingborough
-edingburgh
-edinnburgi
-edynburgh
 
 ELEUTHEROPOLIS
 eleutheropolis oxford - eleutheropolis ie oxcord
 
-MARLBOROUGH
-malborow
-marborow
-marlborow
-
 DELFT
-delf
 delf holeand
-delff
-delph
 delph holland
-
-CANTERBURY
-cantabrigiae
-cantabrigiæ
-cantebrig
-cantorbury
-cantebrigiæ
-canterbury
-cantorbury
-
-COLLEN
-colloniæ
-
-CORKE
-corck
-corcke
-cork
-
-MALMO
-malmoo
-malmö
 
 BOSTON
 massachuset boston
@@ -460,17 +44,6 @@ PHILADELPHIA
 philadelphia pennsylvania
 
 
-PARIS
-parisiis
-parisius
-parise
-parys
-
-BASEL
-basil
-basill
-basyl
-
 SAINT-OMER
 st omers
 st-omer
@@ -480,71 +53,28 @@ s omers ie saint omers
 saint-omer france
 
 WESTMINSTER
-westemynster
-westmester
-westmestre
-westminister
 westminster (london)
 westminster london
-westmonstre
-westmynster
-westmynstre
-westmyster
-westmonasterii
-westmestre
-westmynstre
-westmoster
-westmystre
-
-WITTENBERG
-wittenberge
 
 HEMPSTEAD
 ie hemel hempstead
-hemstead
-
-HEIDELBERG
-heidelbergh
-
-HAMBURG
-hamborough
-hamboroughe
-hamburgh
 
 DURHAM
-gateshead
-gateside
 gateside ie gateshead durham
 
 GHENT
 gant holland
 gant ie ghent
 gant ghent
-gente
-gant
-
-MWYTHIG
-mwŷthig
 
 BRISTOL
-bristoll
 bristoll avon
 
-BRUSSELS
-bruxelles
-bruxells
-
 GLASGOW
-glasgovv
 glasgow scotland
-glasguæ
-
-GENEVA
-geneua
-genevah
+glasgow scotland
 
 CAMBRDIGE
-cambridg
 cambridge england
 cambridge cambridgeshire
 cambridge london
@@ -554,96 +84,54 @@ cabridg mass
 cabridge mass
 cambridge new-england
 
-GREENWICH
-grenewych
-
-VENICE
-venetia
-ventiis
-venus
-venez
-
 VEVAY
 vevay switzerland
 
-TOULOUSE
-tolose
 
 NETHERLANDS
 low countries
 lowcountryes
 
-LOUVAIN
-louain
-louaine
-louan
-louanii
-louayne
-lovain
-lovanii
-lovanni
 
 NORWICH
 norwich england
 
 OXFORD
-oxen
-oxenford
 oxford eng
 oxford i e london - oxford ie london
 oxford ielondon - oxford ie london
 oxford london - oxford ie london
 oxford or london - oxford ie london
 oxford oxfordshire - oxford
-oxforde
 oxfordie london - oxford ie london
 oxon oxford
-oxoniæ
-oxonii
 
-SOUTHWARK
-southwarke
-sowthwarke
-sothewarke
 
 LONDON
+london london
 yondon ie london
 vtopia ie london
-t london
-londra
 sondon ie london
-ie london
-ondon ie london
-oonden
-obedience ie london
 nod-lon ie london
-nod-nol
+obedience ie london
+ondon ie london
+ie london
+london little britaine - london
+london or middelburgh - london
+london ouer aldersgate - london
+london oxford - london ie oxford
+london glasgow - london ie glasgow
+london church
+london entred
+london etc
+london sn
+london al
+t london
 nod-nol ie london
-lunnduin
-lundain
-lundon
-loydon
-loudon
-londonn
 londons ie london
-londoon
-londonian
-londou
-londra
-londre
-londrun
 loneon ie london
-lonini
-lonkon
-lonlon
-lonndini
-lonndo
-lonndon
-lonnon
-lonnon ie london
-lonodnsic
-lonon
 lonon ie london
+lonnon ie london
 london york stephen buckley london - london
 london york london - london
 london edinburgh - london ie edinburgh
@@ -651,45 +139,13 @@ london savoy - london ie savoye
 london savoye - london ie savoye
 london la savoye - london ie savoye
 london leith - london ie leith
-london little britaine - london
-london or middelburgh - london
-london ouer aldersgate - london
-london oxford - london ie oxford
-london church
-london glasgow - london ie glasgow
-london entred
-london etc
-london sn
-london al
-london london
-londnon
-londoa ie london
-londom
-lo
-loddon
-lodnon
-lodon
-london ie london
-lonain ie london
-lond
 lond ie london
-londdn
-londen
-londgn
-londin
-
-londrez
-londonijs
-londres
-lond
-llùndain
 england london
 colledge savoy london
-londinesis
-llundain
-londini
+london ie london
+lonain ie london
 london southwarke
-lbndon
+londoa ie london
 
 LEITH
 leith leith leith london leith leith scotland
@@ -697,126 +153,41 @@ leith leith leith london leith leith scotland
 LEIDEN
 leiden holland
 
-HARLEM
-haarlem
-
 HAGUE
+gravenhagh
+graven-hage
 s'grauen-haghe
 s'graven haghe
 ad haghe hague
 la haye
-hagæ
 hagæ-comitis ie hague
-hage
-hagh
-haghe
 haghe ie hague
-hague
 hague london - hague ie london
 gravenhagh netherlands
-gravenhagh
-graven-hage
 
-AMSTERDAM
-amstelrodam
-ampsterdam
-amstelodami
-amselredam
-amstelredam
-amsterledam
-amsterodam
-amstredam
-antwerpen
-
-EUROPE
-europ
 
 ANTWERP
 n ie antwerp
 duchye braband  andewarpe
-andwarpe
-andewerpe
-andwerpe
-antuarpe
-antuerpiae
-antuerpiæ
-antverpiae
-antberpiæ
-antvverp
-antvverpe
-antwarp
-antwerp
-antwerpe
-antwerpen
-antwerpiæ
-antwrop
-anvverpe
-anwerp
-anwerpe
 
-IPSWICH
-ippeswich
-ippeswych
-ippiswich
-ippiswiche
-ippyswiche
-ippyswyche
 
 LEIDEN
-leyden
 leyden london - leiden ie london
 leiden london - leiden ie london
 
-LIEGE
-liège
-
-WITTENBORG
-wittonburge
-wyttonburge
-
-BLACKFRIERS
-blackefriers
-
 ROTTERDAM
 rotterdame holland
-roterdame
 
 ROCHESTER
 rochester kent england
 
 ABERDEEN
-aberden
 aberdeen scotland
-aberdene
-aberdoniæ
-aberdoniis
-abredeis
 
-MIDDLEBURG
-middelborg
-middelborough
-middelburg
-middelburgh
-middleborrowgh
-middleborrow
-middleborugh
-middlebourgh
-middleburgh
-middlebrugh
-midleburgh
 
 sl
 s l
 
-ROUEN
-roan
-rouan
-roüen
-rowen
-
-RHEIMS
-rheins
-rhemes
 
 SAINT ALBANS
 st albans
@@ -825,7 +196,6 @@ sanctus albanus
 SAINT ANDREWS
 st andrews
 sanct androus
-sanctandrois
 sainct-andrevves
 sainct-andrewes
 sainct-andrews
@@ -835,20 +205,14 @@ st germain
 st germains
 st germsans
 
-SAVOY
-saouy
-savoye
 
 SHOREDITCH
 shoreditch england
 
 STRASBOURG
-strasborowe
 strasburgh elsas
-straszburg
 
 STRIVELING
-striuling
 striveling scotlande
 
 SWARTHMORE
@@ -859,7 +223,6 @@ yrok engalnd
 york london - york ie london
 york now london
 york yorkshire
-yorke
 yorke london - york ie london
 yorke oxford - york ie oxford
 york oxford - york ie oxford
@@ -867,31 +230,13 @@ yorke yorkshire - york
 yorke yorkshire - york
 
 WORCESTER
-worceter
 worcesterim dorceter
 worcester worcestershire
 
-ZURICH
-zijrik
-zurych
-zürich
-ziiryk
-zurik
-
 WATERFORD
-vvaterford
 vvaterford waterford
-warerford
 waterford ireland
 waterford waterford
 
-WESEL
-wesill
-
 MILAN
 ie milan
-
-UTRECTH
-vtrech
-vtrecth
-vtricht
