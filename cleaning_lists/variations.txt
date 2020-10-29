@@ -1,7 +1,7 @@
 EXETER
 exeter devon
 
-DOWAY
+DOUAI
 douay douai
 dovvay rheims
 dowa ie douai
@@ -216,7 +216,7 @@ STRIVELING
 striveling scotlande
 
 SWARTHMORE
-swarthmore engalnd
+swarthmore england
 
 YORK
 yrok engalnd
