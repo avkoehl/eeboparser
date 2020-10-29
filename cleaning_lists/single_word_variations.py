@@ -155,7 +155,7 @@ single_word_variations = {
 # GREENWICH (Greenwich, England)
 "grenewych": "greenwich",
 #
-#VENICE (Venice, Italy)
+# VENICE (Venice, Italy)
 "venetia": "venice",
 "ventiis": "venice",
 "venus": "venice"
@@ -333,8 +333,8 @@ single_word_variations = {
 "rheins": "rheims",
 "rhemes": "rheims",
 # 
-# SAINT ANDREWS (Unknown)
-"sanctandrois", "saint andrews",
+# SAINT-ANDREWS (Saint Andrews, Scotland)
+"sanctandrois", "saint-andrews",
 #
 # SAVOY (Savoie, France)
 "saouy": "savoy",
