@@ -140,233 +140,235 @@ single_word_variations = {
 "bruxelles": "brussels"
 "bruxells": "brussels",
 #
-# GLASGOW
+# GLASGOW (Glasgow, Scotland)
 "glasgovv": "glasgow",
 "glasguæ": "glasgow",
 #
-# GENEVA
-"geneua"
-"genevah"
+# GENEVA (Geneva, Switzerland)
+"geneua": "geneva",
+"genevah": "geneva",
 #
-# CAMBRDIGE
-cambridg
+# CAMBRDIGE (Cambridge, England)
+# for US cambridge check two_word_variations
+"cambridg": "cambridge",
 #
-# GREENWICH
-grenewych
+# GREENWICH (Greenwich, England)
+"grenewych": "greenwich",
 #
-#VENICE
-venetia
-ventiis
-venus
-venez
+#VENICE (Venice, Italy)
+"venetia": "venice",
+"ventiis": "venice",
+"venus": "venice"
+"venez": "venice"
 #
-# TOULOUSE
-tolose
+# TOULOUSE (Toulouse, France)
+"tolose": "toulouse",
 #
-# NETHERLANDS
-lowcountryes
+# NETHERLANDS (Netherlands)
+"lowcountryes": "netherlands",
 #
-# LOUVAIN
-louain
-louaine
-louan
-louanii
-louayne
-lovain
-lovanii
-lovanni
+# LOUVAIN (Leuven, Belgium)
+"louain": "louvain",
+"louaine": "louvain",
+"louan": "louvain",
+"louanii": "louvain",
+"louayne": "louvain",
+"lovain": "louvain",
+"lovanii": "louvain",
+"lovanni": "louvain",
 #
-# OXFORD
-oxoniæ
-oxonii
-oxen
-oxforde
-oxenford
+# OXFORD (Oxford, England)
+"oxoniæ": "oxford",
+"oxonii": "oxford",
+"oxen": "oxford",
+"oxforde": "oxford",
+"oxenford": "oxford",
 #
-# SOUTHWARK
-southwarke
-sowthwarke
-sothewarke
+# SOUTHWARK (Southwark, London, England)
+"southwarke":"southwark",
+"sowthwarke":"southwark",
+"sothewarke":"southwark",
 #
-# LONDON
-londra
-oonden
-nod-nol
-lunnduin
-lundain
-lundon
-loydon
-loudon
-londonn
-londoon
-londonian
-londou
-londra
-londre
-londrun
-lonini
-lonkon
-lonlon
-lonndini
-lonndo
-lonndon
-lonnon
-lonodnsic
-lonon
-londnon
-londom
-lo
-loddon
-lodnon
-lodon
-lond
-londen
-londgn
-londin
-londrez
-londonijs
-londres
-lond
-llùndain
-londdn
-londinesis
-llundain
-londini
-lbndon
+# LONDON (London, England)
+"londra": "london",
+"oonden": "london",
+"nod-nol": "london",
+"lunnduin": "london",
+"lundain": "london",
+"lundon": "london",
+"loydon": "london",
+"loudon": "london",
+"londonn": "london",
+"londoon": "london",
+"londonian": "london",
+"londou": "london",
+"londra": "london",
+"londre": "london",
+"londrun": "london",
+"lonini": "london",
+"lonkon": "london",
+"lonlon": "london",
+"lonndini": "london",
+"lonndo": "london",
+"lonndon": "london",
+"lonnon": "london",
+"lonodnsic": "london",
+"lonon": "london",
+"londnon": "london",
+"londom": "london",
+"lo": "london",
+"loddon": "london",
+"lodnon": "london",
+"lodon": "london",
+"lond": "london",
+"londen": "london",
+"londgn": "london",
+"londin": "london",
+"londrez": "london",
+"londonijs": "london",
+"londres": "london",
+"lond": "london",
+"llùndain": "london",
+"londdn": "london",
+"londinesis": "london",
+"llundain": "london",
+"londini": "london",
+"lbndon": "london",
 #
-# HARLEM
-haarlem
+# HAARLEM (Haarlem, Netherlands)
+"haarlem": "haarlem"
 #
-# HAGUE
-hagæ
-hage
-hagh
-haghe
+# HAGUE (The Hague, Netherlands)
+"hagæ": "the hague",
+"hage": "the hague",
+"hagh": "the hague",
+"haghe": "the hague",
 #
-# AMSTERDAM
-amstelrodam
-ampsterdam
-amstelodami
-amselredam
-amstelredam
-amsterledam
-amsterodam
-amstredam
-antwerpen
+# AMSTERDAM (Amsterdam, Netherlands)
+"amstelrodam": "amsterdam",
+"ampsterdam": "amsterdam",
+"amstelodami": "amsterdam",
+"amselredam": "amsterdam",
+"amstelredam": "amsterdam",
+"amsterledam": "amsterdam",
+"amsterodam": "amsterdam",
+"amstredam": "amsterdam",
+"antwerpen": "amsterdam",
 #
-# EUROPE
-europ
+# EUROPE (unknown)
+"europ": "europe",
 #
-# ANTWERP
-andwarpe
-andewerpe
-andwerpe
-antuarpe
-antuerpiae
-antuerpiæ
-antverpiae
-antberpiæ
-antvverp
-antvverpe
-antwarp
-antwerp
-antwerpe
-antwerpen
-antwerpiæ
-antwrop
-anvverpe
-anwerp
-anwerpe
+# ANTWERP (Antwerp, Netherlands)
+"andwarpe": "antwerp",
+"andewerpe": "antwerp",
+"andwerpe": "antwerp",
+"antuarpe": "antwerp",
+"antuerpiae": "antwerp",
+"antuerpiæ": "antwerp",
+"antverpiae": "antwerp",
+"antberpiæ": "antwerp",
+"antvverp": "antwerp",
+"antvverpe": "antwerp",
+"antwarp": "antwerp",
+"antwerp": "antwerp",
+"antwerpe": "antwerp",
+"antwerpen": "antwerp",
+"antwerpiæ": "antwerp",
+"antwrop": "antwerp",
+"anvverpe": "antwerp",
+"anwerp": "antwerp",
+"anwerpe": "antwerp",
 #
-# IPSWICH
-ippeswich
-ippeswych
-ippiswich
-ippiswiche
-ippyswiche
-ippyswyche
+# IPSWICH (Ipswich, England)
+"ippeswich": "ipswich",
+"ippeswych": "ipswich",
+"ippiswich": "ipswich",
+"ippiswiche": "ipswich",
+"ippyswiche": "ipswich",
+"ippyswyche": "ipswich",
 #
-# LEIDEN
-leyden
+# LEIDEN (Leiden, Netherlands)
+"leyden": "leiden",
 #
-# LIEGE
-liège
+# LIEGE (Liege, Belgium)
+"liège": "liege",
 #
-# WITTENBORG
-wittonburge
-wyttonburge
+# WITTENBERG (Wittenberg, Germany)
+"wittonburge": "wittenberg",
+"wyttonburge": "wittenberg",
 #
-# BLACKFRIERS
-blackefriers
+# BLACKFRIARS (Blackfriars, England)
+"blackefriers": "blackfriars",
 #
-# ROTTERDAM
-roterdame
+# ROTTERDAM (Rotterdam, Netherlands)
+"roterdame": "rotterdam",
 #
-# ABERDEEN
-aberden
-aberdene
-aberdoniæ
-aberdoniis
-abredeis
+# ABERDEEN (Aberdeen, Scotland)
+"aberden": "aberdeen",
+"aberdene": "aberdeen",
+"aberdoniæ": "aberdeen",
+"aberdoniis": "aberdeen",
+"abredeis": "aberdeen",
 #
-# MIDDLEBURG
-middelborg
-middelborough
-middelburg
-middelburgh
-middleborrowgh
-middleborrow
-middleborugh
-middlebourgh
-middleburgh
-middlebrugh
-midleburgh
+# MIDDLESBROUGH (Middlesbrough, England)
+"middelborg": "middlesbrough",
+"middelborough":  "middlesbrough",
+"middelburg":  "middlesbrough",
+"middelburgh":  "middlesbrough",
+"middleborrowgh":  "middlesbrough",
+"middleborrow":  "middlesbrough",
+"middleborugh":  "middlesbrough",
+"middlebourgh":  "middlesbrough",
+"middleburgh":  "middlesbrough",
+"middlebrugh":  "middlesbrough",
+"midleburgh":  "middlesbrough",
 #
-# ROUEN
-roan
-rouan
-roüen
-rowen
+# ROUEN (Rouen, France)
+"roan": "rouen",
+"rouan": "rouen",
+"roüen": "rouen",
+"rowen": "rouen",
 #
-# RHEIMS
-rheins
-rhemes
+# RHEIMS (Reims, France)
+"rheins": "rheims",
+"rhemes": "rheims",
 # 
-# SAINT ANDREWS
-sanctandrois
+# SAINT ANDREWS (Unknown)
+"sanctandrois", "saint andrews",
 #
-# SAVOY
-saouy
-savoye
+# SAVOY (Savoie, France)
+"saouy": "savoy",
+"savoye": "savoy",
 #
-#STRASBOURG
-strasborowe
-straszburg
+# STRASBOURG (Strasbourg, France)
+"strasborowe", "strasbourg",
+"straszburg", "strasbourg",
 #
-#STRIVELING
-striuling
+# STRIVELING (Unknown)
+"striuling", "striveling",
 #
-# YORK
-yorke
+# YORK (York, England)
+"yorke", "york",
 #
-# WORCESTER
-worceter
+# WORCESTER (Worcester, England)
+"worceter", "worcester",
 #
-# ZURICH
-zijrik
-zurych
-zürich
-ziiryk
-zurik
+# ZURICH (Zurich, Switzerland)
+"zijrik": "zurich",
+"zurych": "zurich",
+"zürich": "zurich",
+"ziiryk": "zurich",
+"zurik": "zurich",
 #
-# WATERFORD
-vvaterford
-warerford
+# WATERFORD (Waterford, England)
+"vvaterford": "waterford",
+"warerford": "waterford",
 #
-# WESEL
-wesill
+# WESEL (Wesel, Germany)
+"wesill", "wesel",
 #
-# UTRECTH
-vtrech
-vtrecth
-vtricht
+# UTRECTH (Utrecht, Netherlands)
+"vtrech": "utrecht",
+"vtrecth": "utrecht",
+"vtricht": "utrecht",
+}
