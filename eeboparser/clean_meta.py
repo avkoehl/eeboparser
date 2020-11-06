@@ -1,9 +1,9 @@
 import pandas as pd
 import re
 
-import locations_blacklist
-import phrase_variations
-import single_word_variations
+from locations import locations_blacklist
+from locations import single_word_variations
+from locations import phrase_variations
 
 PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<>?@\^_`{|}~]'
 
