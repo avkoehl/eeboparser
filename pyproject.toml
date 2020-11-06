@@ -12,6 +12,7 @@ joblib = "^0.17.0"
 pandas = "^1.1"
 
 [tool.poetry.dev-dependencies]
+ipython = "^7.19"
 
 [build-system]
 requires = ["poetry>=0.12"]
