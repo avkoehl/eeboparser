@@ -25,6 +25,13 @@ def clean_meta(meta):
 def clean_locations(location):
     """ to be mapped to the locations column """
 
+    def word_mapping(word):
+        if word in locations_blacklist:
+            return ""
+        if word in single_word_variations:
+            return single_word_variations[word]
+        return word
+
     location = location.lower() # set to lower
 
     location = re.sub(r'\d+', '', location) # remove digits
@@ -32,23 +39,16 @@ def clean_locations(location):
     location = re.sub(r'\s\s+', ' ', location)  # Handle excess whitespace
     location = location.strip()  # No whitespace at start and end of string
 
-
-    # remove unwanted terms (stopwords, prepositions, variations of printed)
-    blacklist = [
-            "i", "a\'i", "printed", "prynted", "imprinted", "enprynted", "imprynted",
-            "imprented", "imprentit", "excusum", "printiedig",
-            "anno domini", "anno", "are", "for", "of", "within", "by", "at",
-            "printio", "the", "and", "in", "sic", "re", "im", "jm", "er", "em", "an", 
-            "yn", "en", "a", "ad", "briniwyd", "brintio", "brio"]
-
     location = location.split()
-    location = ' '.join([x for x in location if x not in blacklist])
-    location = location.strip()
+    location = ' '.join([word_mapping(w) for w in location])
 
-    # then single word mapping
     # then phrases (without stopwrods)
-    # then the ie londons (ie single word)
+    if location in phrase_variations:
+        location = phrase_variations[location]
 
+    # then the ie londons (ie single word)
+    location = re.sub(r'^ie ', '', location)
+    location = location.strip()
     return location
 
 def clean_dates(date):
