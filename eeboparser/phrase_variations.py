@@ -18,10 +18,10 @@ phrase_variations = {
 #
 # DUBLIN (Dublin, Ireland)
 "dublin edinburgh": "dublin ie edinburgh",
-"dublin london": "dublin ie london"
+"dublin london": "dublin ie london",
 #
 # FRANKFURT (Frankfurt, Germany) 
-"francoforti moenum": "frankfurt"
+"francoforti moenum": "frankfurt",
 #
 # EDINBURGH (Edinburgh, Scotland)
 "holy-rood-house edinburgh": "edinburgh",
@@ -36,7 +36,7 @@ phrase_variations = {
 "edinbvrgh london": "edinburgh ie london",
 #
 # ELEUTHEROPOLIS (unknown)
-"eleutheropolis oxford": "eleutheropolis ie oxford"
+"eleutheropolis oxford": "eleutheropolis ie oxford",
 #
 # DELFT (Delft, Netherlands)
 "delf holeand": "delft",
@@ -52,7 +52,7 @@ phrase_variations = {
 "boston new=england": "boston",
 #
 # PHILADELPHIA (Philadelphia, United States)
-"philadelphia pennsylvania": "philadelphia"
+"philadelphia pennsylvania": "philadelphia",
 #
 # SAINT-OMER (Saint-Omer, France)
 "st omers": "saint-omer",
@@ -70,7 +70,7 @@ phrase_variations = {
 "ie hemel hempstead": "hemel hempstead",
 #
 # DURHAM (Durham, England)
-"gateside ie gateshead durham": "durham"
+"gateside ie gateshead durham": "durham",
 #
 # GHENT (Ghent, Netherlands)
 "gant holland": "ghent",
