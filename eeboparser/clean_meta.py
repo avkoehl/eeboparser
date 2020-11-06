@@ -1,9 +1,9 @@
 import pandas as pd
 import re
 
-from locations import locations_blacklist
-from locations import single_word_variations
-from locations import phrase_variations
+from eeboparser.locations import locations_blacklist
+from eeboparser.locations import single_word_variations
+from eeboparser.locations import phrase_variations
 
 PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<>?@\^_`{|}~]'
 
