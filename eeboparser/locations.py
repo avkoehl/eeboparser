@@ -5,9 +5,18 @@
 # also some accents
 locations_blacklist = [
 "jmprinted",
+"inprynted",
+"e",
+"imprimé",
+"church"
+"imprimé",
+"printet ",
+"aldersgate",
+"inprynted",  
 "now",
 "printiedig",
 "a",
+"à",
 "mathew",
 "fynysshed",
 "next",
@@ -15,6 +24,8 @@ locations_blacklist = [
 "jmprynted",
 "empryntyd",
 "imprínted",
+"parish",
+"secretly",
 "inprinted",
 "printid",
 "fletestreate",
@@ -27,6 +38,7 @@ locations_blacklist = [
 "imprimé",
 "emprinted",
 " ̀a",
+" ̀a", 
 "jmprynted",
 "churchyarde",
 "imprintyd",
@@ -326,6 +338,7 @@ locations_blacklist = [
 "tauestok",
 "ye",
 "famous",
+"setember",
 "cite",
 "emprentyd ",
 "emprented",
@@ -461,6 +474,11 @@ single_word_variations = {
 "franckford": "frankfurt",
 "franckfort": "frankfurt",
 "francofourd": "frankfrut",
+"frankofourd": "frankfrut",
+#
+#
+# THE HAGUE (The Hague, Netherlands)
+"hague":"the hague",
 #
 # EDINBURGH (Edinburgh, Scotland)
 "eclinburgh": "edinburgh",
@@ -587,6 +605,7 @@ single_word_variations = {
 # VENICE (Venice, Italy)
 "venetia": "venice",
 "ventiis": "venice",
+"venetiis": "venice",
 "venus": "venice",
 "venez": "venice",
 #
@@ -619,6 +638,7 @@ single_word_variations = {
 "sothewarke":"southwark",
 #
 # LONDON (London, England)
+"londod": "london",
 "londra": "london",
 "oonden": "london",
 "nod-nol": "london",
@@ -768,13 +788,16 @@ single_word_variations = {
 # SAVOY (Savoie, France)
 "saouy": "savoy",
 "savoye": "savoy",
+"sauoy": "savoy",
 #
 # STRASBOURG (Strasbourg, France)
+"strasburgh": "strasbourg",
 "strasborowe": "strasbourg",
 "straszburg": "strasbourg",
 #
 # STRIVELING (Unknown)
 "striuling": "striveling",
+"striuiling": "striveling",
 #
 # YORK (York, England)
 "yorke": "york",
@@ -798,6 +821,7 @@ single_word_variations = {
 #
 # UTRECTH (Utrecht, Netherlands)
 "vtrech": "utrecht",
+"vtrecht": "utrecht",
 "vtrecth": "utrecht",
 "vtricht": "utrecht",
 }
@@ -858,6 +882,7 @@ phrase_variations = {
 "philadelphia pennsylvania": "philadelphia",
 #
 # SAINT-OMER (Saint-Omer, France)
+"st omer": "saint-omer",
 "st omers": "saint-omer",
 "st-omer": "saint-omer",
 "st omer": "saint-omer",
@@ -874,8 +899,10 @@ phrase_variations = {
 #
 # DURHAM (Durham, England)
 "gateside ie gateshead durham": "durham",
+"durham ie durham durham": "durham",
 #
 # GHENT (Ghent, Netherlands)
+"ghent holland": "ghent",
 "gant holland": "ghent",
 "gant ie ghent": "ghent",
 "gant ghent": "ghent",
@@ -910,12 +937,19 @@ phrase_variations = {
 "oxon oxford": "oxford",
 "oxford oxfordshire": "oxford",
 "oxford i e london": "oxford ie london",
+"oxford e london": "oxford ie london",
 "oxford ielondon": "oxford ie london",
 "oxford london":  "oxford ie london",
 "oxford or london": "oxford ie london",
 "oxfordie london": "oxford ie london",
 # 
 # LONDON (London, England)
+"London england": "london",
+"london s": "london",
+"london s": "london",
+"london london": "london",
+"savoy london": "savoy ie london",
+"london savoy": "savoy ie london",
 "london london": "london",
 "yondon ie london": "london",
 "vtopia ie london": "london",
@@ -957,13 +991,18 @@ phrase_variations = {
 #
 # LEITH (Leith, Ediburgh, Scotland)
 "leith leith leith london leith leith scotland": "leith",
+"leith leith": "leith",
 # 
 # LEIDEN (Leiden, Netherlands)
 "leiden holland": "leiden",
 #
 # THE HAGUE (The Hague, Netherlands)
+"the hague hague": "the hague",
+"hagæ-comitis ie  hague": "the hague",
+"the hague ie hague": "the hague",
 "gravenhagh": "the hague",
 "graven-hage": "the hague",
+"graven-hage ie london": "the hague ie london",
 "s'grauen-haghe": "the hague",
 "s'graven haghe": "the hague",
 "sgrauen-haghe": "the hague",
@@ -1016,6 +1055,11 @@ phrase_variations = {
 #
 # STRASBOURG (Strasbourg, France)
 "strasburgh elsas": "strasbourg",
+"strasburgh elsas ie wesel": "strasbourg ie wesel",
+"strasburgh elsas ie wesel elsas": "strasbourg ie wesel",
+"strasbourg elsas ie wesel elsas": "strasbourg ie wesel",
+"strasbourg elsas ie wesel": "strasbourg ie wesel",
+"strasbourg elsas": "strasbourg", 
 # 
 # STRIVELING (Unknown)
 "striveling scotlande": "striveling",
