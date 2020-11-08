@@ -41,13 +41,16 @@ def clean_locations(location):
 
     location = location.split()
     location = ' '.join([word_mapping(w) for w in location])
+    location = location.split()
+    location = ' '.join(location)
 
-    # then phrases (without stopwrods)
+    # then phrases (without stopwords)
     if location in phrase_variations:
         location = phrase_variations[location]
 
-    # then the ie londons (ie single word)
-    location = re.sub(r'^ie ', '', location)
+    # remove ie at beginning and end of location (e.g "ie london ie")
+    location = re.sub('^ie ', '', location)
+    location = re.sub(' ie$', '', location)
     location = location.strip()
     return location
 
