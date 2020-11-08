@@ -875,6 +875,7 @@ phrase_variations = {
 "boston massachusets": "boston",
 "boston massachusetts": "boston",
 "boston new england": "boston",
+"boston england": "boston",
 "boston new-england": "boston",
 "boston new=england": "boston",
 #
@@ -997,6 +998,7 @@ phrase_variations = {
 "leiden holland": "leiden",
 #
 # THE HAGUE (The Hague, Netherlands)
+"sgrauen-haghe ie london": "the hague ie london",
 "the hague hague": "the hague",
 "hagæ-comitis ie  hague": "the hague",
 "the hague ie hague": "the hague",
