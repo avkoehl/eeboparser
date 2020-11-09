@@ -4,23 +4,67 @@ import re
 from eeboparser.locations import locations_blacklist
 from eeboparser.locations import single_word_variations
 from eeboparser.locations import phrase_variations
-
-PUNCT_RE = r'[\[\]\|!"#$%&\'()*+,./:;<>?@\^_`{|}~]'
+from eeboparser.utils import is_roman
+from eeboparser.utils import normalize_text
+from eeboparser.utils import PUNCT_RE
 
 def clean_meta(meta):
     """ where meta is a list of dicts"""
-    # keywords, Language already normalized
-    # TODO: keywords need to be split on --
-    # really just Date, Author, Locations
+    # Language already normalized
+    # really just Date, Author, Locations, and splitting keywords
+    #
+    # FIELDS:
+    # ids [ 
+    # Author 
+    # Date
+    # Keywords 
+    # Locations 
+    # Language 
+
 
     df = pd.DataFrame.from_records(meta)
     df["Location"] = df["Location"].map(clean_locations)
     df["Date"] = df["Date"].map(clean_dates)
     df["Author"] = df["Author"].map(clean_authors)
 
-    # TODO verify results with value_counts and nunique, and comparisons
-    # such as print all the original values that mapped to london...
     return df.to_records(index=False)
+
+def clean_keywords(keywords):
+    """ to be mapped to the keywords column """
+    # from the xml - keywords are stored as a list
+    # Each element in the list can be a series of associated terms delimited by --
+    # for example
+    # In [12]: meta["Keywords"][1]
+    # Out[12]:
+    #    ['Charles --  I, --  King of England, 1600-1649 --  Early works to 1800.',
+    #     'Great Britain --  History --  Civil War, 1642-1649 --  Early works to 1800.',
+    #     'Great Britain --  Foreign relations --  Scotland --  Early works to 1800.']
+    #
+    # For our uses we decided to aggregate the keywords, splitting on the --
+    # The idea being there seems to be arbitrary variance of the order of related terms
+    # and that the same information is captured if they are aggregated
+    # Two things to note: first duplicates are removed such as Early works to 1800
+    # and second for whatever reason the cataloguers put the regnal number after a double dash
+    # so we work to attach that back to the monarch's name as a single keyword
+
+    # TODO: split on --, find roman numerals and attach to index before
+    # remove duplicates
+    flat = "--".join(keywords)
+    terms = flat.split('--')
+
+    cleaned = []
+    index = 0
+    for term in terms:
+        if is_roman(term):
+            cleaned[index] = cleaned[index] + term
+        else:
+            cleaned.append(term)
+            index += 1
+                
+
+
+    return (keywords)
+    
 
 def clean_locations(location):
     """ to be mapped to the locations column """
@@ -32,12 +76,7 @@ def clean_locations(location):
             return single_word_variations[word]
         return word
 
-    location = location.lower() # set to lower
-
-    location = re.sub(r'\d+', '', location) # remove digits
-    location = re.sub(PUNCT_RE, '', location) # remove punctuation
-    location = re.sub(r'\s\s+', ' ', location)  # Handle excess whitespace
-    location = location.strip()  # No whitespace at start and end of string
+    location = normalize_text(location)
 
     location = location.split()
     location = ' '.join([word_mapping(w) for w in location])
@@ -93,11 +132,8 @@ def clean_authors(authors):
         author = " ".join([w for w in words if w[0].isupper()])
         author = author.lower()
 
-        # remove digits and punct
-        author = re.sub(r'\d+', '', author) # remove digits
-        author = re.sub(PUNCT_RE, '', author) # remove punctuation
-        author = re.sub(r'\s\s+', ' ', author)  # Handle excess whitespace
-        author = author.strip()  # No whitespace at start and end of string
+        # noramlize
+        author = normalize_text(author)
 
         # remove extraneous expressions (not sure if necessary)
         blacklist = ["fl", "of", "or", "aut", "de", "d",
