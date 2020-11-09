@@ -36,7 +36,9 @@ def is_roman(term):
     term = term.upper()
 
     # check if roman numeral
-
-    return False
+    if re.match('^[MDCLXVI]+$', term) is None:
+        return False
+    else:
+        return True
 
 
