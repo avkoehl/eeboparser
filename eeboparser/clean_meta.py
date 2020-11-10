@@ -10,17 +10,16 @@ from eeboparser.utils import PUNCT_RE
 
 def clean_meta(meta):
     """ where meta is a list of dicts"""
-    # Language already normalized
-    # really just Date, Author, Locations, and splitting keywords
     #
     # FIELDS:
-    # ids [ 
-    # Author 
-    # Date
-    # Keywords 
-    # Locations 
-    # Language 
-
+    # * ids [File_ID, EEBO_Citation, ESTC_ID, Proquest_ID, STC_ID, VID)
+    # *Title - keep as is
+    # * Publisher - keep as is
+    # * Language  - keep as is
+    # * Author - normalize text, and apply author specific cleaning
+    # Date - normalize to single 4 digit date if possible
+    # * Keywords - aggregate terms
+    # * Location - normalize text, and apply location specific normalization
 
     df = pd.DataFrame.from_records(meta)
     df["Location"] = df["Location"].map(clean_locations)
@@ -47,23 +46,21 @@ def clean_keywords(keywords):
     # and second for whatever reason the cataloguers put the regnal number after a double dash
     # so we work to attach that back to the monarch's name as a single keyword
 
-    # TODO: split on --, find roman numerals and attach to index before
+    # split on --, find roman numerals and attach to index before
     # remove duplicates
     flat = "--".join(keywords)
     terms = flat.split('--')
+    terms = [t.strip() for t in terms]
 
     cleaned = []
     index = 0
     for term in terms:
-        if is_roman(term):
-            cleaned[index] = cleaned[index] + term
+        if is_roman(term) and index != 0:
+            cleaned[index-1] = cleaned[index-1] + " " + term
         else:
             cleaned.append(term)
             index += 1
-                
-
-
-    return (keywords)
+    return list(set(cleaned))
     
 
 def clean_locations(location):
@@ -97,7 +94,6 @@ def clean_dates(date):
     """ to be mapped to dates column """
 
     # remove non digits and spaces and dashes and slashes
-    t = date
     date = str(date)
     date = re.sub("[^0-9 \/\\-]", "", date)
     date = date.replace("-", " ")
@@ -113,11 +109,14 @@ def clean_dates(date):
     # so that the date would be 1545
     clean_date = ""
     for d in dates:
-        if len(d) == 4:
+        if len(d) == 4 and int(d) > 1400 and int(d) < 1850:
             clean_date = d
             break
-        if len(d) == 5 and d.contains("/"):
-            clean_date = date[0:4]
+        if len(d) == 5 and "/" in d:
+            d = d[0:4]
+            if int(d) > 1400 and int(d) < 1850:
+                clean_date = d
+                break
     return clean_date
     
 def clean_authors(authors):
@@ -132,7 +131,7 @@ def clean_authors(authors):
         author = " ".join([w for w in words if w[0].isupper()])
         author = author.lower()
 
-        # noramlize
+        # normalize
         author = normalize_text(author)
 
         # remove extraneous expressions (not sure if necessary)
