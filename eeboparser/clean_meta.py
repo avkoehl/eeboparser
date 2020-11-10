@@ -12,19 +12,20 @@ def clean_meta(meta):
     """ where meta is a list of dicts"""
     #
     # FIELDS:
-    # * ids [File_ID, EEBO_Citation, ESTC_ID, Proquest_ID, STC_ID, VID)
-    # *Title - keep as is
-    # * Publisher - keep as is
-    # * Language  - keep as is
-    # * Author - normalize text, and apply author specific cleaning
-    # Date - normalize to single 4 digit date if possible
-    # * Keywords - aggregate terms
-    # * Location - normalize text, and apply location specific normalization
+    #  ids [File_ID, EEBO_Citation, ESTC_ID, Proquest_ID, STC_ID, VID)
+    #  Title - keep as is
+    #  Publisher - keep as is
+    #  Language  - keep as is
+    #  Author - normalize text, and apply author specific cleaning
+    #  Date - normalize to single 4 digit date if possible
+    #  Keywords - aggregate terms
+    #  Location - normalize text, and apply location specific normalization
 
     df = pd.DataFrame.from_records(meta)
     df["Location"] = df["Location"].map(clean_locations)
     df["Date"] = df["Date"].map(clean_dates)
     df["Author"] = df["Author"].map(clean_authors)
+    df["Keywords"] = df["Keywords"].map(clean_authors)
 
     return df.to_records(index=False)
 
@@ -109,7 +110,7 @@ def clean_dates(date):
     # so that the date would be 1545
     clean_date = ""
     for d in dates:
-        if len(d) == 4 and int(d) > 1400 and int(d) < 1850:
+        if len(d) == 4 and "/" not in d and int(d) > 1400 and int(d) < 1850:
             clean_date = d
             break
         if len(d) == 5 and "/" in d:
