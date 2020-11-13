@@ -93,32 +93,45 @@ def clean_locations(location):
 
 def clean_dates(date):
     """ to be mapped to dates column """
-
-    # remove non digits and spaces and dashes and slashes
+    o = date
     date = str(date)
-    date = re.sub("[^0-9 \/\\-]", "", date)
-    date = date.replace("-", " ")
-    dates = date.split()
+    def handle_token(t):
+        # handle /
+        if "/" in t:
+            parts = t.split('/')
+            return parts[0]
 
-    # TODO look for tri-dates (three digit dates)
-    # TODO add Sam's manual corrections
+        # handle --
+        if "--" in t:
+            t = t.replace("--", "50")
+            return t
+        if "-" in t:
+            if len(t) == 4 and t[3] == "-": #164-
+                t = t.replace("-", "5")
+            elif t[0] == "-":
+                t = t.replace("-", "")
+            else: #1684-1682
+                t = t.split("-")[0]
+            return t
 
-    # loop through
-    # once a 4 diit number is reached, keep that as the date
-    # note that this keeps the first one, e.g in a date range
-    # if 5 digits and has a / such as 1545/6 keep the first 4 digits
-    # so that the date would be 1545
-    clean_date = ""
-    for d in dates:
-        if len(d) == 4 and "/" not in d and int(d) > 1400 and int(d) < 1850:
-            clean_date = d
-            break
-        if len(d) == 5 and "/" in d:
-            d = d[0:4]
-            if int(d) > 1400 and int(d) < 1850:
-                clean_date = d
-                break
-    return clean_date
+        return t
+
+    date = re.sub(r"l(\d{3})", r"1\1", date) # if l followed by three digits, replace with a 1
+    date = date.replace("[", "")
+    date = date.replace("]", "")
+    date = date.replace("?", "")
+    date = date.replace(".", "")
+    date = re.sub("[^0-9 \/\\-]", " ", date) # remove non digits keep dash and slash
+    tokens = date.split()
+    tokens = [handle_token(t) for t in tokens]
+
+    # return first token of len 4 that is within date range 
+    for t in tokens:
+        if len(t) == 4:
+            if int(t) >= 1300 and int(t) <= 1800:
+                return t
+    # if none found return blank
+    return ""
     
 def clean_authors(authors):
     """ to be mapped to authors column """
