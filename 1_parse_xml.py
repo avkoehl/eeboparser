@@ -13,6 +13,7 @@ import json
 
 from joblib import Parallel, delayed
 import pymongo
+import pandas as pd
 
 from eeboparser import clean_meta
 from eeboparser import mongo
@@ -20,7 +21,7 @@ from eeboparser import parse_xml
 from eeboparser import utils
 
 
-db = False
+db = True
 input_dir = "../data/"
 ncores = 4
 
@@ -34,6 +35,7 @@ results = Parallel(n_jobs=ncores)(delayed(parse_xml.parse_xml)(x["_id"],
 meta, texts,truncated = zip(*results)
 
 # clean meta
+meta = clean_meta.clean_meta(meta)
 
 if db:
     print("connecting to mongo database")

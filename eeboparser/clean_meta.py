@@ -27,7 +27,7 @@ def clean_meta(meta):
     df["Author"] = df["Author"].map(clean_authors)
     df["Keywords"] = df["Keywords"].map(clean_keywords)
 
-    return df
+    return df.to_dict('records')
 
 def clean_keywords(keywords):
     """ to be mapped to the keywords column """
