@@ -1,3 +1,3 @@
 cd java
-export ANT_OPTS="-Xmx10G"
+export ANT_OPTS="-Xmx30G"
 ant run
