@@ -25,9 +25,9 @@ def clean_meta(meta):
     df["Location"] = df["Location"].map(clean_locations)
     df["Date"] = df["Date"].map(clean_dates)
     df["Author"] = df["Author"].map(clean_authors)
-    df["Keywords"] = df["Keywords"].map(clean_authors)
+    df["Keywords"] = df["Keywords"].map(clean_keywords)
 
-    return df.to_records(index=False)
+    return df
 
 def clean_keywords(keywords):
     """ to be mapped to the keywords column """
